@@ -19,6 +19,8 @@ public class chessPanel {
         String str[] = sc.nextLine().split(" ");
         int n = Integer.parseInt(str[0]);
         int m = Integer.parseInt(str[1]);
+        // 행 열  입력
+
         char arr[][] = new char[n][m];
         for (int i = 0; i < n; i++) {
             String s[] = sc.nextLine().split("");
@@ -44,8 +46,8 @@ public class chessPanel {
     private static int possible(char arr[][], int row_start, int col_start) {
         int Change_cnt = 0;
         int Change_cnt2 = 0;
-        int colindex = 0;
-        int rowindex = 0;
+        int colindex = 0; // 열 index(세로)
+        int rowindex = 0; // 행 index(가로)
         for (int i = row_start; i < row_start + 8; i++) {
             for (int j = col_start; j < col_start + 8; j++) {
                 {
