@@ -217,7 +217,6 @@ public class BranchOfBound {
         }
         System.out.println("최적 아이템들의 정보");
         for (int i = 0; i < N; i++) {
-            if (Path[i])
                 System.out.println(arr[i].toString());
         }
         System.out.println("Max Profit "+ (-finalLB));

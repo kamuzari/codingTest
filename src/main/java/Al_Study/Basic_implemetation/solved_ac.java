@@ -1,49 +1,33 @@
 package Al_Study.Basic_implemetation;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.*;
 
 public class solved_ac {
+    static final float jeulsaAvg = (float) 0.15;
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
-        int n = sc.nextInt();
+        int n = Integer.parseInt(br.readLine());
         int arr[]=new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i]=(sc.nextInt());
+            arr[i]=(Integer.parseInt(br.readLine()));
         }
-        Arrays.sort(arr);
+        Arrays.sort(arr); // 오름파순 정렬.
         int d = solvedAc(n, arr);
         bw.write(d+" ");
         bw.flush();
-        bw.close();sc.close();
+        bw.close();
+        br.close();
     }
 
     static int solvedAc(int n, int[] arr) {
-        float jeulsaAvg = (float) 0.15;
-        int first=0;
-        int last=arr.length-1;
-        int operand = Math.round(n * jeulsaAvg);
-        int operand1=operand;
-        int operand2=operand;
-        while (operand1!=0) {
-            first++;
-            operand1--;
-        }
-        while (operand2!=0) {
-            last--;
-            operand2--;
-        }
-        n=n-(operand*2);
+        int x=(int) Math.round(n*jeulsaAvg);
         int sum=0;
-        for (int i = first; i <=last ; i++) {
+        for (int i = x; i <arr.length-x ; i++) {
             sum+=arr[i];
         }
-        if(sum==0)
-            return 0;
-        float avg=(float)sum/n;
-        return Math.round(avg);
+        double ans=Math.round((double)sum/(n-x*2));
+        return (int) ans;
     }
 }

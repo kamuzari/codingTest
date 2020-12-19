@@ -7,14 +7,16 @@ import java.util.Scanner;
  * 있을 경우에는 ‘-’(빼기) 문자로 표시된다.
  * 그리고 감추어진 특정 가로 줄은 길이 k-1인 ‘?’ (물음표) 문자열로 표시되어 있다.
  * */
+
+//https://www.acmicpc.net/problem/2469
 public class 사다리타기 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int k = sc.nextInt();
-        int n = sc.nextInt();
+        int k = sc.nextInt(); // 참가한 사람.
+        int n = sc.nextInt(); //가로줄의 수.
         sc.nextLine();
-        String str[] = sc.nextLine().split("");
-        print(str);
+        String result[] = sc.nextLine().split("");
+        print(result);
         String cmd[] = new String[n];
         for (int i = 0; i < n; i++) {
             cmd[i] = sc.next();
