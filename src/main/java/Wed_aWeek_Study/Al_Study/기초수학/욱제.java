@@ -1,6 +1,5 @@
-package Al_Study.기초수학;
+package Wed_aWeek_Study.Al_Study.기초수학;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.util.Scanner;
 
 public class 욱제 {

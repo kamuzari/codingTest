@@ -1,4 +1,4 @@
-package Al_Study.기초수학;
+package Wed_aWeek_Study.Al_Study.기초수학;
 
 import java.util.Scanner;
 

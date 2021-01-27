@@ -1,5 +1,6 @@
 package oneDay_twoSol.BackTracking;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class N_and_M2 {
@@ -15,6 +16,7 @@ public class N_and_M2 {
         n = Integer.parseInt(str[0]);
         m = Integer.parseInt(str[1]);
         arr = new int[n];
+        Arrays.sort(arr);
         visited = new boolean[n];
         // Logic
         go2(0); // cnt는 뽑은 개수.
@@ -44,7 +46,7 @@ public class N_and_M2 {
         for (int i = 0; i < n; i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                arr[depth] = i + 1;
+                arr[depth] = arr[i];
                 if(depth==0)
                     go2(depth+1);
                 if(depth>0 && arr[depth]>arr[depth-1]) // 뽑은 숫자중에 먼저 뽑안던 숫자보다는 커야한다!.

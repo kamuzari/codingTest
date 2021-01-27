@@ -1,8 +1,6 @@
-package Al_Study.기초수학;
+package Wed_aWeek_Study.Al_Study.기초수학;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class 약수들의합 {
