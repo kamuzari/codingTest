@@ -8,6 +8,16 @@ public class integerTriangle {
         int n=sc.nextInt();
         sc.nextLine();
         int triangle[][]=new int[n+1][n+1];
+
+        /*
+        0 0 0 0 0 0 0 0
+        0
+        0
+        0
+        0
+        0
+
+        */
         for (int i = 1; i < n+1; i++) {
             String str[]=sc.nextLine().split(" ");
             for (int j = 1; j < str.length+1; j++) {

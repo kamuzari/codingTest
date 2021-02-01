@@ -28,6 +28,12 @@ public class putBridge {
                 }
             }
             System.out.println(pascal[m][n]);
+            /*
+            1
+            1 1
+            1 2 1
+            1 3 3 1
+            */
         }
     }
     static void combination(int n,int r,int idx)
