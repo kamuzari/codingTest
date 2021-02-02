@@ -14,7 +14,7 @@ public class sequenceSum {
         }
         int dp[]=new int[n];
         dp[0]=arr[0];
-        int max=arr[0];
+
         for (int i = 1; i < n; i++) {
             dp[i]=Math.max(dp[i-1]+arr[i],arr[i]);
         }
