@@ -1,4 +1,4 @@
-package Thur_Sunday_aWeek_Al.shortestDIstance;
+package oneDay_twoSol.shortestDIstance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
