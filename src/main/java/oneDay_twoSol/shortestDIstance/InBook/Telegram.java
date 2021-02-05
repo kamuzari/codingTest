@@ -1,4 +1,4 @@
-package oneDay_twoSol.shortestDIstance;
+package oneDay_twoSol.shortestDIstance.InBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;

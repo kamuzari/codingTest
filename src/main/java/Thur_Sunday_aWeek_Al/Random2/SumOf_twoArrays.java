@@ -51,7 +51,6 @@ public class SumOf_twoArrays {
         }
         System.out.println(cnt);
 
-
     }
 
     static int lowerBound(int l, int r, long t) {

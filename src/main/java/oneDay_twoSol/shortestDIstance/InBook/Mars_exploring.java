@@ -1,4 +1,4 @@
-package oneDay_twoSol.shortestDIstance;
+package oneDay_twoSol.shortestDIstance.InBook;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

@@ -32,6 +32,10 @@ public class Floyd {
                 matrix[a][b]=c;
             }
         }
+
+        //=======================
+
+        // 2 -> 4  2-[1,2,3,4,5]-[1]-1
         for (int k =1; k <n+1 ; k++) {
             for (int i = 1; i < n+1; i++) {
                 for (int j = 1; j < n+1; j++) {

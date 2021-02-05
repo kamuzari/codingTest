@@ -13,7 +13,6 @@ public class 마인크래프트 {
 //        블록 제거 2초. 블록 놓기 1초.
         int ansTime=Integer.MAX_VALUE;
         int ansHeight=0;
-        Map <Integer,Integer> map=new TreeMap<>(); // 높이를 가지는 블록들의 개수 .
         String s[]={};
         int max=-1;
         int min=Integer.MAX_VALUE;
