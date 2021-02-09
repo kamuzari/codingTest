@@ -27,6 +27,12 @@ public class Exercise {
                 }
             }
         }
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[i].length; j++) {
+                System.out.print(dp[i][j]+" ");
+            }
+            System.out.println();
+        }
         int ans=INF;
         for (int i = 1; i <v+1 ; i++) {
             for (int j = 1; j < v+1; j++) {

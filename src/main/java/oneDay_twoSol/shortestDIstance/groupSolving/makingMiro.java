@@ -25,7 +25,7 @@ public class makingMiro {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         n=sc.nextInt();
-        // bfs 문제와 유사?
+        // bfs 문제 응용 최단거리 배열 도달과 비슷.
         map=new int[n][n];
         sc.nextLine();
         for (int i = 0; i <n ; i++) {
@@ -63,7 +63,7 @@ public class makingMiro {
                 {
                     if(map[ty][tx]==0 &&dist[ty][tx]>dist[cur_y][cur_x]+1) // 검은 방이면 +` 하면서 갱신
                     {
-                        dist[ty][tx]=dist[cur_y][cur_x]+1;
+                        dist[ty][tx]=dist[cur_y][cur_x]+1; // 작은 값으로 갱신. 거기로 안가도 검은방을 바꿀 필요가 없다는 것.
                         q.offer(new Node(ty,tx));
                     }
 

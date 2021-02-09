@@ -27,8 +27,8 @@ public class teengerShark {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-       int map[][] = new int[4][4];
-        Fish fish[] = new Fish[16];
+       int[][] map = new int[4][4];
+        Fish[] fish = new Fish[16];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int a = sc.nextInt(); // 상어 번호
@@ -46,15 +46,26 @@ public class teengerShark {
     static int max = 0;
 
     public static void dfs(int[][] map, Fish[] fish, int y, int x, int sum) {
+        // 재귀 적으로 덮어서 쓰기..
         int[][] tempMap = new int[4][4];
         Fish[] tempFish = new Fish[16];
+        // 복제.
         for (int i = 0; i < 4; i++) {
-            tempMap[i] = map[i].clone();
+            for (int j = 0; j < 4; j++) {
+                tempMap[i][j]=map[i][j];
+            }
         }
-        tempFish = fish.clone();
 
+        for (int i = 0; i < fish.length; i++) {
+            tempFish[i]=fish[i];
+        }
+        //==============
+
+
+        // eat
         int fishNumber = tempMap[y][x];
-        int shark_direc = tempFish[fishNumber].dir;
+        int shark_direc = tempFish[fishNumber].dir; // 상어가 방향 가지고.
+        // 먹고 나서 초기화 해주고.
         tempFish[fishNumber].y = -1;
         tempFish[fishNumber].x = -1;
         tempFish[fishNumber].dir = -1;
@@ -63,15 +74,14 @@ public class teengerShark {
         sum += (fishNumber + 1);
         if (max < sum)
             max = sum;
-        System.out.println(y + "->" + x);
-        // fish shift
+        // fish shift(작은 순서대로.)
         for (int i = 0; i < 16; i++) {
-            if (tempFish[i].y == -1) // 상어의 위치.
+            if (tempFish[i].y == -1 ) // 상어의 위치.
                 continue;
+            System.out.println(tempFish[i].toString());
             int cy = tempFish[i].y;
             int cx = tempFish[i].x;
             int cdir = tempFish[i].dir;
-            System.out.println(i+" @@@" +tempFish[i].toString());
 
             int ny = cy + dy[cdir];
             int nx = cx + dx[cdir];
@@ -79,16 +89,18 @@ public class teengerShark {
             // 상어자리 이거나 혹은 범위 밖으로 초과할 때 갱신.방향 갱신.
             while (ny < 0 || ny >= 4 || nx < 0 || nx >= 4 || (ny == y && nx == x)) {
                 ndir = (ndir + 1) % 8;
-                ny = tempFish[i].y + dy[ndir];
-                nx = tempFish[i].x + dx[ndir];
+                ny = cy + dy[ndir];
+                nx = cx + dx[ndir];
             }
-            if (tempMap[ny][nx] != -1) {
+            if (tempMap[ny][nx] != -1) { // 물고기가 업는 것.
                 int target = tempMap[ny][nx];
                 tempFish[target].y = cy;
                 tempFish[target].x = cx;
+                // 방향 안바뀜...
                 tempFish[i].y = ny;
                 tempFish[i].x = nx;
                 tempFish[i].dir = ndir;
+
                 tempMap[ny][nx] = i;
                 tempMap[cy][cx] = target;
             } else {
@@ -100,6 +112,7 @@ public class teengerShark {
             }
 
         }
+        System.out.println("========");
         // 한번에 1~3칸 이동.
         for (int step = 1; step < 4; ++step) {
             int ny = y + dy[shark_direc] * step;
@@ -108,6 +121,7 @@ public class teengerShark {
                 break;
             }
             if (tempMap[ny][nx] != -1) {
+                System.out.println("호출"+x +" ,"+y);
                 dfs(tempMap, tempFish, ny, nx, sum);
             }
         }
