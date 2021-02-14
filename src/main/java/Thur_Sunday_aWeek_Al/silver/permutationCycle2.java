@@ -24,6 +24,7 @@ public class permutationCycle2 {
                 UnionParent(i, Integer.parseInt(str[i-1]));
             }
             Set<Integer> s=new HashSet<>();
+            //[ 0,1,1,2,3,4,1,1]
             for (int i = 1; i < n+1; i++) {
 //                System.out.print(find(i)+" ");
                 s.add(find(i));
