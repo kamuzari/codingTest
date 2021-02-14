@@ -4,24 +4,61 @@ import java.util.Scanner;
 
 public class ballCollect {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        char ch[]=new char[n];
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        char ch[] = new char[n];
         sc.nextLine();
-        String str=sc.nextLine();
-        ch=str.toCharArray();
-        int rMove=0;int bMove=0;
-        char last=ch[ch.length-1];
-        for (int i = 0; i < ch.length; i++) {
-            if(ch[i]=='R')
-                rMove++;
+        String str = sc.nextLine();
+        ch = str.toCharArray();
+        int rCnt = 0;
+        int bCnt = 0;
+        int ans = (int) 1e9;
+
+        for (int i = 0; i < n; i++) {
+            if (ch[i] == 'R')
+                rCnt++;
+            else
+                bCnt++;
         }
-        for (int i = 0; i < ch.length; i++) {
-            if(ch[i]=='B')
-                bMove++;
+        int cnt = 0;
+        // R 모두 오른쪽
+        for (int j = 0; j < n; j++) {
+            if (ch[j] == 'R')
+                cnt++;
+            else
+                break;
         }
-        int max=rMove > bMove ? bMove : rMove;
-        System.out.println(max);
+        ans = Math.min(ans, rCnt - cnt);
+        // R 모두 왼쪽
+        cnt = 0;
+        for (int j = n - 1; j >= 0; j--) {
+            if (ch[j] == 'R') {
+                cnt++;
+            } else {
+                break;
+            }
+        }
+        ans = Math.min(ans, rCnt - cnt);
+        // B 모두 오른쪽
+        cnt = 0;
+        for (int j = 0; j < n; j++) {
+            if (ch[j] == 'B')
+                cnt++;
+            else
+                break;
+        }
+        ans = Math.min(ans, bCnt - cnt);
+        // B 모두 왼쪽
+        cnt = 0;
+        for (int j = n - 1; j >= 0; j--) {
+            if (ch[j] == 'B') {
+                cnt++;
+            } else {
+                break;
+            }
+        }
+        ans = Math.min(ans, bCnt - cnt);
+        System.out.println(ans);
 
 
     }
