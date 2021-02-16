@@ -16,9 +16,9 @@ public class ballCollect {
 
         for (int i = 0; i < n; i++) {
             if (ch[i] == 'R')
-                rCnt++;
+                rCnt++; //5
             else
-                bCnt++;
+                bCnt++; //4
         }
         int cnt = 0;
         // R 모두 오른쪽
@@ -28,7 +28,7 @@ public class ballCollect {
             else
                 break;
         }
-        ans = Math.min(ans, rCnt - cnt);
+        ans = Math.min(ans, rCnt - cnt); // 4
         // R 모두 왼쪽
         cnt = 0;
         for (int j = n - 1; j >= 0; j--) {
