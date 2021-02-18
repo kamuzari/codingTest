@@ -50,7 +50,7 @@ public class HeisBecame그머 {
 //        if (distance[dest] ==INF)
 //            System.out.println(-1);
 //        else
-//            System.out.println(distance[dest]);
+//            System.out.println(dist@ance[dest]);
     }
 
     static int Dijkstra(int start, int dest) {
