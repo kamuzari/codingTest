@@ -89,7 +89,6 @@ public class HeisBecame그머 {
                 int cost = distance[cur] + adjList.get(cur).get(i).weight;
                 if (cost < distance[adjList.get(cur).get(i).vertax]) {
                     distance[adjList.get(cur).get(i).vertax] = cost;
-                    pq.add(new Node(adjList.get(cur).get(i).vertax, cost));
                 }
 
             }

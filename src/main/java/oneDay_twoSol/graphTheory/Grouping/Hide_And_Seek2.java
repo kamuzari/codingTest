@@ -48,13 +48,15 @@ public class Hide_And_Seek2 {
                 }
                 if (nx < 0 || nx > 100000) continue;
 
+// 5 4 8 16 17 _ -> 큐 5 10 9 18 17 _  post[17]=4; //
 
                 if (nx == k) {
                     minT = posit[cur];
-                    cnt++;
+                    cnt++; // 빠르게 도달하는 횟수 춧;
                 }
+                // 해당 시작 정점이 이미 정해져 있어서 만약 2에서 출발하게 되어
                 // posit[nx] == posit[cur] + 1 이미 이전에 왔던 길로 해서 최소의 거리를 만들 었으면 그 점이 최단이여서. 볼필요가 없다??
-                if (posit[nx] == 0 || (posit[nx] == posit[cur] + 1)) {
+                if (posit[nx] == 0 || (posit[nx] > posit[cur] + 1)) {
                     // 한번 방문하지 않았다면. -> 방문해도 상관 없지만 이전보다 거리가 크면 안됨..
                     q.add(nx);
                     posit[nx] = posit[cur] + 1; // 현재 큐에서 꺼내온 위치를 기준으로  +1;
