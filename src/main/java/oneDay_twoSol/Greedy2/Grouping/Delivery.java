@@ -33,7 +33,13 @@ public class Delivery {
             return destination - o.destination;
         }
     }
-
+/*
+v1 v2 quantity
+1  4  40
+2 3   10
+2 3  20
+3 4  20
+*/
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
