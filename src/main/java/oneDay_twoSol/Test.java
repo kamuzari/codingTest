@@ -16,6 +16,5 @@ public class Test {
         String str = "abcdefg";
         String s=str.substring(0,2);
         System.out.println(s);
-
     }
 }
