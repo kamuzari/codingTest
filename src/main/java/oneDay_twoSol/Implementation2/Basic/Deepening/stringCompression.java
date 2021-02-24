@@ -7,67 +7,60 @@ public class stringCompression {
 //        System.out.println(solution2(str1));
 //        String str2 = "ababcdcdababcdcd";
 //        System.out.println(solution2(str2));
-//        String str3 = "abcabcdede";
-//        System.out.println(solution2(str3));
+        String str3 = "abcabcdede";
+        System.out.println(solution(str3));
 //        String str4 = "abcabcabcabcdededededede";
 //        System.out.println(solution2(str4));
-        String str5="xababcdcdababcdcd";
-        System.out.println(solution2(str5));
+        String str5 = "xababcdcdababcdcd";
+        System.out.println(solution(str5));
     }
+
+
     static boolean check[];
+
     public static int solution(String s) {
 
         String ans = "";
         int len = s.length();
         int min = Integer.MAX_VALUE;
-        for (int i = 1; i <= len / 2; i++) { // i 는 자르는 갯수.이면서 반복문 도는 중의적 의미/
-            String sub = s.substring(0, i);
+        for (int i = 1; i < len / 2 + 1; i++) {
+            String comp = "";
+            String prev = s.substring(0, i);
             int cnt = 1;
-            int j;
-            boolean ch=true;
-            for (j = i; j + i <= len; ) {
-                if (sub.equals(s.substring(j, j + i))) {
+
+            for (int j = i; j < len; j += i) {
+                String sub="";
+                for (int k = j; k < j + i; k++) {
+                    if (k < s.length()) sub += s.charAt(k);
+                }
+                if (prev.equals(sub))
                     cnt++;
-                } else {
-                    // 다르면.
-                    if (cnt == 1)
-                        ans += sub;
-                    else
-                        ans += cnt + sub;
-                    sub = s.substring(j, j + i);
-                    cnt = 1;
+                else {
+                    comp+=(cnt>2)?cnt+sub:sub;
+                    sub="";
+                    for (int k = j; k < j + i; k++) {
+                        if (k < s.length()) sub += s.charAt(k);
+                    }
+                    prev = sub;
+                    cnt=1;
                 }
-                if (j + i == len) {
-                    if (cnt == 1)
-                        ans += sub;
-                    else
-                        ans += cnt + sub;
-                }
-                if(j+i>len)
-                {
-                    ch=false;
-                }
-                j += i;
-                // 다 검사를 못했다... 범위가 넘어가서.. 이 부분을 탈출.
             }
-            if (ans.length() <= len / 2 || j+i>len)
-                continue;
-
-            min = Math.min(min, ans.length());
-            ans = "";
+            comp+=(cnt>2)?cnt+prev:prev;
+            min=Math.min(min,comp.length());
         }
         return min;
     }
 
-    public static int solution2(String s) {
-        int len=s.length()/2;
-        int min=Integer.MAX_VALUE;
-        for (int i = 1; i <=len ; i++) {
-            compression(s,i);
-            min=Math.min(min,compression(s,i).length());
+    public static int solution3(String s) {
+        int len = s.length() / 2;
+        int min = Integer.MAX_VALUE;
+        for (int i = 1; i <= len; i++) {
+            compression(s, i);
+            min = Math.min(min, compression(s, i).length());
         }
         return min;
     }
+
     public static String compression(String str, int i) {
 
         int count = 1;

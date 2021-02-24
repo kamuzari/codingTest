@@ -25,7 +25,8 @@ public class stringResort {
         for (int i = 0; i < idx; i++) {
             System.out.print(str[i]);
         }
-        System.out.print(sum);
+        if( sum!=0)
+            System.out.print(sum);
     }
 }
 /*

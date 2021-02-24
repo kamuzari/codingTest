@@ -41,6 +41,5 @@ public class UDRL {
         }
         System.out.println("a = " + (a+1));;
         System.out.println("b = " + (b+1));
-
     }
 }
