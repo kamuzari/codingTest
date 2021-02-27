@@ -15,15 +15,24 @@ public class PillarsAndBeams {
                 {2, 1, 0, 1}, {2, 2, 1, 1}, {5, 0, 0, 1},
                 {5, 1, 0, 1}, {4, 2, 1, 1}, {3, 2, 1, 1}
         };
-        int a[][]=solution(5,arr);
-        int i=0;
+        int arr2[][] = {
+                {0, 0, 0, 1}, {2, 0, 0, 1}, {4, 0, 0, 1},
+                {0, 1, 1, 1}, {1, 1, 1, 1}, {2, 1, 1, 1},
+                {3, 1, 1, 1}, {2, 0, 0, 0}, {1, 1, 1, 0}, {2, 2, 0, 1}
+        };
+        int a[][] = solution(5, arr);
+        int b[][] = solution(n, arr2);
         for (int[] aa : a) {
+            System.out.println(Arrays.toString(aa));
+        }
+        System.out.println();
+        for (int[] aa : b) {
             System.out.println(Arrays.toString(aa));
         }
         System.out.println();
     }
 
-//        static final int PILLAR = 0;
+    //        static final int PILLAR = 0;
 //        static final int BEAM = 1;
 //        static final int DESTRUCT = 0;
 //        static final int CONSTRUCT = 1;
@@ -106,15 +115,15 @@ public class PillarsAndBeams {
 //        }
     static boolean[][] pillars;
     static boolean[][] beam;
-    static int n;
+    static int k;
 
     public static int[][] solution(int n, int[][] build_frame) {
         int[][] answer = {};
-        int cnt=0;
+        int cnt = 0;
         // 보를 제거할 때.
-        pillars = new boolean[n+3][n+3];
-        beam = new boolean[n+3][n+3];
-        n = n;
+        pillars = new boolean[n + 3][n + 3];
+        beam = new boolean[n + 3][n + 3];
+        k= n;
 
         for (int i = 0; i < build_frame.length; i++) {
             int x = build_frame[i][0];
@@ -126,17 +135,18 @@ public class PillarsAndBeams {
                 if (kind == 0 && isConstruct(y, x, kind)) {
                     pillars[y][x] = true;
                     cnt++;
-                } else {
+                }
+                if (kind == 1 && isConstruct(y, x, kind)) {
                     if (isConstruct(y, x, kind)) {
                         beam[y][x] = true;
                         cnt++;
                     }
                 }
-            } else // 파괴
+            } else if (setUnset == 0)// 파괴
             {
                 if (kind == 0) {
                     pillars[y][x] = false;
-                } else
+                } else if (kind == 1)
                     beam[y][x] = false;
                 if (!isDestroy(y, x, kind)) {
                     if (kind == 0) {
@@ -144,21 +154,20 @@ public class PillarsAndBeams {
                     } else {
                         beam[y][x] = true;
                     }
-                }
-                else
+                } else
                     cnt--;
             }
 
         }
         int index = 0;
-        answer= new int[cnt][3];
+        answer = new int[cnt][3];
 
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (pillars[i][j])
-                    answer[index++] = new int[]{j, i, 0};
-                if (beam[i][j])
-                    answer[index++] = new int[]{j, i, 1};
+        for (int i = 0; i <= n + 1; ++i) {
+            for (int j = 0; j <= n + 1; ++j) {
+                if (pillars[j][i])
+                    answer[index++] = new int[]{i, j, 0};
+                if (beam[j][i])
+                    answer[index++] = new int[]{i, j, 1};
             }
         }
         return answer;
@@ -166,17 +175,20 @@ public class PillarsAndBeams {
 
     private static boolean isConstruct(int y, int x, int kind) {
         if (kind == 0) { // 기둥일떄
-            // 바닥에 있거나 ,보가 바로 밑에 있거나 , 보 옆쪽에 설치가 되있거나.
-            return y == 0 || beam[y][x] || beam[y][x - 1] || pillars[y - 1][x]; //?  pillars[y][x-1]
+            if (y == 0 || pillars[y - 1][x])
+                return true;
+            return x > 0 && (beam[y][x] || beam[y][x - 1]);
         } else {  // 보일떄
-            // 옆에보가 있거나 ,
-            return pillars[y - 1][x] || pillars[y - 1][x + 1] || (beam[y][x - 1] && beam[y][x + 1]);
+            if (x > 0 && (beam[y][x - 1] && beam[y][x + 1]))
+                return true;
+            return (y > 0 && (pillars[y - 1][x] || pillars[y - 1][x + 1]));
         }
     }
 
+
     private static boolean isDestroy(int y, int x, int kind) {
-        for (int i = 0; i <=n; i++) {
-            for (int j = 0; j <= n; j++) {
+        for (int i = 0; i <= k; i++) {
+            for (int j = 0; j <= k; j++) {
                 if (pillars[i][j] && !isConstruct(i, j, kind)) {
                     return false;
                 }
@@ -186,4 +198,4 @@ public class PillarsAndBeams {
         }
         return true;
     }
-    }
+}

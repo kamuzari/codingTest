@@ -4,14 +4,13 @@ public class Test1 {
         int off[][] = {{1, 0, 0, 0}, {0, 0, 0, 1}, {0, 0, 1, 0}, {0, 1, 1, 0}};
         System.out.println(solution(off,k));
     }
-
     public static int solution(int[][] office, int k) {
         int answer = 0;
 
         for (int i = 0; i < office.length - k+1; i++) {
             for (int j = 0; j < office.length-k+1; j++) {
-                    int cnt = check(i, j, office, k);
-                    answer = Math.max(answer, cnt);
+                int cnt = check(i, j, office, k);
+                answer = Math.max(answer, cnt);
             }
         }
 
@@ -28,5 +27,6 @@ public class Test1 {
         }
         return cnt;
     }
+
 
 }
