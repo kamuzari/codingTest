@@ -1,4 +1,4 @@
-package oneDay_twoSol.Implementation2.Basic.Deepening;
+package oneDay_twoSol.Implementation2.Deepening;
 
 import java.util.Arrays;
 import java.util.Comparator;

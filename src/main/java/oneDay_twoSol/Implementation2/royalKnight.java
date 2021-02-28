@@ -1,4 +1,4 @@
-package oneDay_twoSol.Implementation2.Basic;
+package oneDay_twoSol.Implementation2;
 
 import java.util.Scanner;
 
