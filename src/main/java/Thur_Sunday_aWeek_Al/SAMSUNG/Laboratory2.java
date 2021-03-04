@@ -41,22 +41,19 @@ public class Laboratory2 {
             }
         }
 
-        flag = true;
-        if(cnt-virus.size()<0)
-            flag=false;
 
-        if (flag) {
+
+        if (cnt!=0) {
             combination(0, 0);
+            if (Min == Integer.MAX_VALUE)
+                System.out.println(-1);
+            else
+                System.out.println(Min);
         }
-        if(!flag)
-        {
-            System.out.println("0");
-            return;
+        else {
+            System.out.println("1");
         }
-        if (Min == Integer.MAX_VALUE)
-            System.out.println(-1);
-        else
-            System.out.println(Min);
+
     }
 
     static Stack<Position> s = new Stack<>();
