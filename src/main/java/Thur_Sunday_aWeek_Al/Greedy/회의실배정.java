@@ -2,7 +2,6 @@ package Thur_Sunday_aWeek_Al.Greedy;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 public class 회의실배정 {

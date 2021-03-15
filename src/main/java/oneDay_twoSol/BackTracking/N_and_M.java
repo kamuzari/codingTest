@@ -1,8 +1,5 @@
 package oneDay_twoSol.BackTracking;
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class N_and_M {

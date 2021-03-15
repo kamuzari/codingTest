@@ -1,7 +1,6 @@
 package Thur_Sunday_aWeek_Al.silver2;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class widthOfPicture {
