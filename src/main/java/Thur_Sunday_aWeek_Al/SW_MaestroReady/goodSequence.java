@@ -20,7 +20,6 @@ public class goodSequence {
         {
             System.out.println(s);
             System.exit(0);
-            return;
         }
         else
         {
