@@ -31,6 +31,8 @@ public class ManipulationLadder {
     }
     static void pick(int cnt,int idx)
     {
+        if(cnt>3)
+            return;
         if(cnt ==3 || idx>=h*n)
         {
             if(isTrue())
