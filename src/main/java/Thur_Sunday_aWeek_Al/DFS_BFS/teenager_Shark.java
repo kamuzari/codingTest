@@ -25,7 +25,7 @@ public class teenager_Shark {
             System.out.println(Arrays.toString(arr[i]));
         }
         // 일단 가까운 거리에 큰거 부터 잡아먹자
-        // DFS
+        // SecurityArea
         visited=new boolean[n][n];
         fish shark=new fish(17,0);
         shark.direction=arr[0][0].direction;

@@ -1,3 +1,5 @@
+package TestSE;
+
 import java.util.Scanner;
 
 public class TT {
