@@ -1,4 +1,4 @@
-package AL_CS_STUDY;
+package AL_CS_STUDY.Weekly13;
 
 import java.util.Scanner;
 
@@ -20,6 +20,7 @@ public class Tetromino {
                 board[i][j]=sc.nextInt();
             }
         }
+        //========================
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
 //                visited=new boolean[n][m]; // 대칭적인 부분 그 이전에 탐색했던 부분을 재탐색하는데 시간이 걸린다.
