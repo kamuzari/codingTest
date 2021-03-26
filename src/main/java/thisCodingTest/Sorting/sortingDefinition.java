@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class sorting_4 {
+public class sortingDefinition {
     static Map<Integer, Integer> map = new HashMap<>();
 
     public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class sorting_4 {
         System.out.println("퀵 정렬\n"+Arrays.toString(temp));
         System.out.println("계수 정렬\n" + Arrays.toString(countSort(arr)));
     }
-
+    // O(n^2)
     static int[] select(int arr[]) {
         int temp[] = arr.clone();
 //        System.out.println("처리 과정");
@@ -62,7 +62,7 @@ public class sorting_4 {
         }
         return temp;
     }
-
+    //  O(n^2) or O(n)
     static int[] insert(int arr[]) {
         int temp[] = arr.clone();
 //        System.out.println("처리 과정");
@@ -78,7 +78,7 @@ public class sorting_4 {
         }
         return temp;
     }
-
+    // O(n log n) or O(n^2)<987654321>
     static void quick(int arr[], int start, int end) {
         if (start >= end)
             return;
@@ -106,7 +106,7 @@ public class sorting_4 {
         quick(arr, right + 1, end);
 
     }
-
+    //O(n+k)
     public static int[] countSort(int arr[]) {
         int temp[]=arr.clone();
         int count[]=new int[temp.length];
