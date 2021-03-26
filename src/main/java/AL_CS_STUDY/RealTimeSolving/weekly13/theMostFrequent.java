@@ -1,4 +1,4 @@
-package AL_CS_STUDY.RealTimeSolving;
+package AL_CS_STUDY.RealTimeSolving.weekly13;
 
 import java.util.Scanner;
 

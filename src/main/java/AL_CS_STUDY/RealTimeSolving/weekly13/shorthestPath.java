@@ -1,4 +1,4 @@
-package AL_CS_STUDY.RealTimeSolving;
+package AL_CS_STUDY.RealTimeSolving.weekly13;
 
 import java.util.*;
 
@@ -48,6 +48,7 @@ public class shorthestPath {
             for (int i = 0; i < 4; i++) {
                 int ny=dy[i]+cur.y;
                 int nx=dx[i]+cur.x;
+                // 방문을 했어도 더 공사를 안한 좌표가 있다면 교체.
                 if(ny>=0 && nx>=0 && ny<n && nx<n && (!visited[ny][nx]||ans[ny][nx]>ans[cur.y][cur.x]+map[ny][nx]))
                 {
                     visited[ny][nx]=true;

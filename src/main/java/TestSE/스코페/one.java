@@ -1,4 +1,4 @@
-package 스코페;
+package TestSE.스코페;
 
 import java.util.Arrays;
 import java.util.Comparator;
