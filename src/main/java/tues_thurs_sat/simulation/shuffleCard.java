@@ -1,4 +1,4 @@
-package tues_thurs_sat.jaj;
+package tues_thurs_sat.simulation;
 
 import java.io.*;
 import java.util.Arrays;
