@@ -1,4 +1,4 @@
-package TestSE;
+package codingExam.TestSE;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

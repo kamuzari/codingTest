@@ -1,4 +1,4 @@
-package 스코페;
+package codingExam.스코페;
 
 import java.util.Scanner;
 import java.util.Stack;

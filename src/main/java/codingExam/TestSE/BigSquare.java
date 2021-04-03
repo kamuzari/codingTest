@@ -1,4 +1,4 @@
-package TestSE;
+package codingExam.TestSE;
 
 public class BigSquare {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package TestSE.스코페;
+package codingExam.TestSE.스코페;
 
 import java.util.*;
 
