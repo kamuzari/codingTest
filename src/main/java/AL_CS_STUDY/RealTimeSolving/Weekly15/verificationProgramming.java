@@ -6,6 +6,14 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 // #36 NO
+/*
+1
+4 5
+..v..
+...<@
+^.>..
+>..v.
+* */
 public class verificationProgramming {
     static int n;
     static int m;
@@ -46,7 +54,7 @@ public class verificationProgramming {
         Queue<Node> q = new LinkedList<>();
         q.offer(new Node(0, 0, 3, 0));
         boolean visited[][][][] =new boolean[21][21][4][16];
-        visited[0][0][0][0]=true;
+        visited[0][0][3][0]=true;
         while (!q.isEmpty()) {
             Node cur = q.poll();
             int y = cur.y;
