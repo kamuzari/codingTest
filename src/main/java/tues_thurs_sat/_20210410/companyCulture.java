@@ -27,37 +27,42 @@ public class companyCulture {
             if(a!=-1)
                 arrayList.get(a).add(i+1);
         }
-       /*while (m-->0)
+       while (m-->0)
        {
            st=new StringTokenizer(br.readLine());
            int a=Integer.parseInt(st.nextToken());
            int b=Integer.parseInt(st.nextToken());
-
-           PriorityQueue<Integer> q=new PriorityQueue<>();
-           q.add(a);
-            while (!q.isEmpty())
+            cnt[a]+=b;
+//           System.out.println(Arrays.toString(cnt));
+       }
+        for (int i = 1; i < n+1; i++) {
+            if(cnt[i]>0)
             {
-                int vertax=q.poll();
-                cnt[vertax]+=b;
-                for (Integer integer : arrayList.get(vertax)) {
-                    q.add(integer);
+                Queue<Integer> q=new LinkedList<>();
+                q.add(i);
+                while (!q.isEmpty())
+                {
+                    int vertax=q.poll();
+                    ans[vertax]+=cnt[i];
+                    for (Integer integer : arrayList.get(vertax)) {
+                        q.add(integer);
+                    }
                 }
             }
-
-//           System.out.println(Arrays.toString(cnt));
-       }*/
-
-        while (m-->0)
-        {
-            st=new StringTokenizer(br.readLine());
-            int v=Integer.parseInt(st.nextToken());
-            int w=Integer.parseInt(st.nextToken());
-            cnt[v]+=w;
         }
-        for (int i = 2; i < n+1; i++) {
-            if(cnt[i]>0)
-                dfs(i,cnt[i]);
-        }
+
+
+//        while (m-->0)
+//        {
+//            st=new StringTokenizer(br.readLine());
+//            int v=Integer.parseInt(st.nextToken());
+//            int w=Integer.parseInt(st.nextToken());
+//            cnt[v]+=w;
+//        }
+//        for (int i = 2; i < n+1; i++) {
+//            if(cnt[i]>0)
+//                dfs(i,cnt[i]);
+//        }
         for (int i = 1; i < n+1; i++) {
             System.out.print(ans[i]+" ");
         }
