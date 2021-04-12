@@ -19,6 +19,9 @@ import java.util.Scanner;
 4 5 1
 5 3 1
 5 6 2
+
+// ans
+[1000000000, 0, 2, 3, 1, 2, 4]
 */
 public class Dijkstra {
     static class Node implements Comparable<Node> {
