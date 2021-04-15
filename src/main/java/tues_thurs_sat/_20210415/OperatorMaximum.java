@@ -10,9 +10,9 @@ arr[2]="*";
 */
 public class OperatorMaximum {
     public static void main(String[] args) {
-//       long a= solution("100-200*300-500+20");
+       long a= solution("100-200*300-500+20");
         long b=solution("50*6-3*2");
-//        System.out.println(a);
+        System.out.println(a);
         System.out.println(b);
     }
     static char op[] = {'+', '-', '*'};
