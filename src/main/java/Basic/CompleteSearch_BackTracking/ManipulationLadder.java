@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ManipulationLadder {
     static int n, m, h;
     static int map[][];
-    static int min=(int)1e9;
+    static int min=4;
     static final int LEFT=1;
     static final int RIGHT=-1;
     public static void main(String[] args) {
