@@ -12,7 +12,7 @@ public class Enrolment {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int k = Integer.parseInt(st.nextToken());
         int l = Integer.parseInt(st.nextToken());
-
+        StringBuilder sb=new StringBuilder();
 
         for (int i = 0; i < l; i++) {
             String s = br.readLine();
@@ -23,8 +23,14 @@ public class Enrolment {
         for (String s : set) {
             if (k == 0)
                 break;
-            System.out.println(s);
+            sb.append(s).append("\n");
             k--;
         }
+        System.out.println(sb);
+//        Iterator<String> iter=set.iterator();
+//        while (k-->0 && iter.hasNext())
+//            sb.append(iter.next()).append("\n");
+
+//        System.out.println(sb);
     }
 }
