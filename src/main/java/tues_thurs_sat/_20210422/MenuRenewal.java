@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public class MenueRenewal {
+public class MenuRenewal {
     static int max;
     static HashMap<String,Integer> map;
     public  String[] solution(String[] orders, int[] course) {
