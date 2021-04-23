@@ -9,7 +9,7 @@ public class SubString {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String str=br.readLine();
         String sub=br.readLine();
-
+        //시간 초과 O(str길이 * sub 길이) ==100만 * 100만
         int i = str.indexOf(sub);
         if(i==-1)
         {
