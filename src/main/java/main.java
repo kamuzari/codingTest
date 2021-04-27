@@ -17,6 +17,7 @@ public class main {
                 {2,2},
                 {1,2}
         };
+
         solution(b);
     }
     public static int[] solution(int[][] v) {
