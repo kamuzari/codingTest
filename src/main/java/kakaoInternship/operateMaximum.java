@@ -1,4 +1,4 @@
-package tues_thurs_sat._20210506;
+package kakaoInternship;
 
 import java.util.ArrayList;
 

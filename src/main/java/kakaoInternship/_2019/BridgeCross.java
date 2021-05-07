@@ -1,4 +1,4 @@
-package kakaoInternship;
+package kakaoInternship._2019;
 
 public class BridgeCross {
     public static void main(String[] args) {
