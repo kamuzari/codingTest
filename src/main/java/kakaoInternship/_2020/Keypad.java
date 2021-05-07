@@ -1,4 +1,4 @@
-package kakaoInternship;
+package kakaoInternship._2020;
 
 import java.util.*;
 
