@@ -15,6 +15,14 @@ public class Laboratory2 {
             this.y = y;
             this.x = x;
         }
+
+        @Override
+        public String toString() {
+            return "Position{" +
+                    "y=" + y +
+                    ", x=" + x +
+                    '}';
+        }
     }
 
     static int dy[] = {-1, 1, 0, 0};
@@ -22,6 +30,7 @@ public class Laboratory2 {
     static int map[][];
     static int n;
     static int m;
+    static int zeroCnt = 0;
     static ArrayList<Position> virus = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -29,121 +38,105 @@ public class Laboratory2 {
         n = sc.nextInt();
         m = sc.nextInt();
         map = new int[n][n];
-        int cnt=0;
+        int cnt = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 int a = sc.nextInt();
                 if (a == 2)
                     virus.add(new Position(i, j));
+                if (a == 0)
+                    zeroCnt++;
                 map[i][j] = a;
-                if(a==0)
-                    cnt++;
             }
         }
 
-
-
-        if (cnt!=0) {
-            combination(0, 0);
-            if (Min == Integer.MAX_VALUE)
-                System.out.println(-1);
-            else
-                System.out.println(Min);
-        }
-        else {
-            System.out.println("1");
-        }
-
+        comb(0, 0);
+       if(min==Integer.MAX_VALUE)
+       {
+           System.out.println("-1");
+       }
+       else if(min==0)
+       {
+           System.out.println("0");
+       }
+       else
+       {
+           System.out.println(min);
+       }
     }
 
-    static Stack<Position> s = new Stack<>();
-
-    static void combination(int idx, int depth) {
-        if (depth == m) {
-            int temp[][] = new int[n][n];
-            temp = copy();
-            bfs(temp);
+    static Set<Position> set = new HashSet<>();
+    static void comb(int idx, int cnt) {
+        if (cnt == m) {
+            int copyMap[][] = copy(set);
+            int ret = bfs(copyMap);
+            min = Math.min(ret, min);
             return;
         }
         for (int i = idx; i < virus.size(); i++) {
-            s.push(virus.get(i));
-            combination(i + 1, depth + 1);
-            s.pop();
+            set.add(virus.get(i));
+            comb(i + 1, cnt + 1);
+            set.remove(virus.get(i));
         }
     }
 
-    static int Min = Integer.MAX_VALUE;
+    static int min = Integer.MAX_VALUE;
 
-    static int[][] copy() {
+    private static int bfs(int[][] copyMap) {
+        int max = 0;
+        Queue<Position> q = new LinkedList<>();
+        boolean v[][] = new boolean[n][n];
+        for (Position p : set) {
+            q.offer(p);
+            v[p.y][p.x] = true;
+        }
+        while (!q.isEmpty()) {
+            Position cur = q.poll();
+            for (int i = 0; i < 4; i++) {
+                int ny = dy[i] + cur.y;
+                int nx = dx[i] + cur.x;
+                if (ny >= 0 && nx >= 0 && ny < n && nx < n && !v[ny][nx]) {
+                    if (copyMap[ny][nx] == 0) {
+                        if (copyMap[cur.y][cur.x] == -2) {
+                            copyMap[ny][nx] = 1;
+                        }
+                        else {
+                            copyMap[ny][nx] = copyMap[cur.y][cur.x] + 1;
+                        }
+                        v[ny][nx]=true;
+                        max = Math.max(copyMap[ny][nx], max);
+                        q.offer(new Position(ny, nx));
+                    }
+                }
+            }
+        }
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (copyMap[i][j] == 0) {
+                        max = Integer.MAX_VALUE;
+                        break;
+                    }
+                }
+            }
+        return max;
+    }
+
+    private static int[][] copy(Set<Position> set) {
         int temp[][] = new int[n][n];
-        for (Position p : s) {
+        for (Position p : set) {
             temp[p.y][p.x] = -2;
         }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (map[i][j] != 2) {
-                    if (map[i][j] == 1) // wall
-                    {
+                    if (map[i][j] == 1)
                         temp[i][j] = -1;
-                    } else
+                    else
                         temp[i][j] = map[i][j];
                 }
             }
         }
         return temp;
     }
-
-    static boolean flag = true;
-
-    static void bfs(int map[][]) {
-        int max = -1;
-        Queue<Position> q = new LinkedList<>();
-        boolean visited[][] = new boolean[n][n];
-        for (Position p : s) {
-            q.offer(p);
-            visited[p.y][p.x] = true;
-        }
-        while (!q.isEmpty()) {
-            Position cur = q.poll();
-            for (int i = 0; i < 4; i++) {
-                int ny = cur.y + dy[i];
-                int nx = cur.x + dx[i];
-
-                if (ny >= 0 && nx >= 0 && ny < n && nx < n && !visited[ny][nx]) // boundary
-                {
-                    visited[ny][nx] = true;
-                    if (map[ny][nx] != -1 && map[ny][nx] != -2) {
-                        if (map[ny][nx] == 0 && map[cur.y][cur.x] == -2) {
-                            map[ny][nx] = map[cur.y][cur.x] + 2 + 1;
-                        } else if (map[ny][nx] == 0 && map[cur.y][cur.x] != -2) {
-                            map[ny][nx] = map[cur.y][cur.x] + 1;
-                        } else {
-                            map[ny][nx] = Math.min(map[ny][nx], map[cur.y][cur.x] + 1);
-                        }
-                        max = Math.max(map[ny][nx], max);
-                        q.add(new Position(ny, nx));
-                    }
-                }
-            }
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (map[i][j] == 0) {
-                    max = Integer.MAX_VALUE;
-                }
-//                System.out.print((map[i][j])+" ");
-            }
-//            System.out.println();
-        }
-//        System.out.println("------------------------");
-        Min = Math.min(max, Min);
-    }
 }
 
-/*
-3
-3
-2 2 2
-0 1 0
-0 0 0
-*/
