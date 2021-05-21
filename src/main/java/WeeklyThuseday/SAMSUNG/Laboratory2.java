@@ -1,5 +1,8 @@
 package WeeklyThuseday.SAMSUNG;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /*
@@ -10,10 +13,12 @@ public class Laboratory2 {
     static class Position {
         int y;
         int x;
+        int previousDist;
 
-        public Position(int y, int x) {
+        public Position(int y, int x, int previousDist) {
             this.y = y;
             this.x = x;
+            this.previousDist = previousDist;
         }
 
         @Override
@@ -31,46 +36,42 @@ public class Laboratory2 {
     static int n;
     static int m;
     static int zeroCnt = 0;
+    static int answer = Integer.MAX_VALUE;
     static ArrayList<Position> virus = new ArrayList<>();
+    static int virusCnt = 0;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
         map = new int[n][n];
-        int cnt = 0;
         for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
-                int a = sc.nextInt();
-                if (a == 2)
-                    virus.add(new Position(i, j));
-                if (a == 0)
+                map[i][j] = Integer.parseInt(st.nextToken());
+                if (map[i][j] == 0)
                     zeroCnt++;
-                map[i][j] = a;
+                else if (map[i][j] == 2) {
+                    virus.add(new Position(i, j, 0));
+                    virusCnt++;
+                }
             }
         }
+        if (zeroCnt == 0 && virusCnt ==m)
+            System.out.println(0);
+        else {
+            comb(0, 0);
+            System.out.println(answer == Integer.MAX_VALUE ? -1 : answer);
+        }
 
-        comb(0, 0);
-       if(min==Integer.MAX_VALUE)
-       {
-           System.out.println("-1");
-       }
-       else if(min==0)
-       {
-           System.out.println("0");
-       }
-       else
-       {
-           System.out.println(min);
-       }
     }
 
-    static Set<Position> set = new HashSet<>();
+    static Set<Position> set = new LinkedHashSet<>();
+
     static void comb(int idx, int cnt) {
         if (cnt == m) {
-            int copyMap[][] = copy(set);
-            int ret = bfs(copyMap);
-            min = Math.min(ret, min);
+            spread(zeroCnt);
             return;
         }
         for (int i = idx; i < virus.size(); i++) {
@@ -80,63 +81,46 @@ public class Laboratory2 {
         }
     }
 
-    static int min = Integer.MAX_VALUE;
-
-    private static int bfs(int[][] copyMap) {
-        int max = 0;
+    private static void spread(int zero) {
         Queue<Position> q = new LinkedList<>();
         boolean v[][] = new boolean[n][n];
-        for (Position p : set) {
-            q.offer(p);
-            v[p.y][p.x] = true;
+        for (Position virus : set) {
+            v[virus.y][virus.x] = true;
+            q.offer(virus);
         }
+        ArrayList<Position> recovery = new ArrayList<>();
+        for (int i = 0; i < virus.size(); i++) {
+            if (!set.contains(virus.get(i))) {
+                Position nonVirus = virus.get(i);
+                recovery.add(nonVirus);
+                map[nonVirus.y][nonVirus.x] = 0;
+                zero++;
+            }
+        }
+
         while (!q.isEmpty()) {
             Position cur = q.poll();
             for (int i = 0; i < 4; i++) {
                 int ny = dy[i] + cur.y;
                 int nx = dx[i] + cur.x;
-                if (ny >= 0 && nx >= 0 && ny < n && nx < n && !v[ny][nx]) {
-                    if (copyMap[ny][nx] == 0) {
-                        if (copyMap[cur.y][cur.x] == -2) {
-                            copyMap[ny][nx] = 1;
-                        }
-                        else {
-                            copyMap[ny][nx] = copyMap[cur.y][cur.x] + 1;
-                        }
-                        v[ny][nx]=true;
-                        max = Math.max(copyMap[ny][nx], max);
-                        q.offer(new Position(ny, nx));
-                    }
+                if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
+                if (v[ny][nx] || map[ny][nx] == 1) continue;
+                if (map[ny][nx] == 0) {
+                    zero--;
                 }
+                if (zero == 0) {
+                    for (int j = 0; j < recovery.size(); j++) {
+                        Position nonVirus = recovery.get(j);
+                        map[nonVirus.y][nonVirus.x] = 2;
+                    }
+                    answer = Math.min(answer, cur.previousDist + 1);
+                    return;
+                }
+                v[ny][nx] = true;
+                q.offer(new Position(ny, nx, cur.previousDist + 1));
             }
         }
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (copyMap[i][j] == 0) {
-                        max = Integer.MAX_VALUE;
-                        break;
-                    }
-                }
-            }
-        return max;
     }
 
-    private static int[][] copy(Set<Position> set) {
-        int temp[][] = new int[n][n];
-        for (Position p : set) {
-            temp[p.y][p.x] = -2;
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (map[i][j] != 2) {
-                    if (map[i][j] == 1)
-                        temp[i][j] = -1;
-                    else
-                        temp[i][j] = map[i][j];
-                }
-            }
-        }
-        return temp;
-    }
 }
 
