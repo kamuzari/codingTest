@@ -1,13 +1,11 @@
 package ProgrammersKit.DFS_BFS;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Network {
     public static void main(String[] args) {
         System.out.println(solution(3,new int[][]{
-                {1, 1, 0}, {1, 1, 0}, {0, 0, 1}
+                {1, 0, 0}, {0, 1, 0}, {0, 0, 1}
         }));
         System.out.println(solution(3,new int[][]{
                 {1, 1, 0}, {1, 1, 1}, {0, 1, 1}
@@ -23,23 +21,29 @@ public class Network {
         }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if(i!=j &&computers[i][j]!=0)
+                if(computers[i][j]==1)
                 {
-                    if(find(i)!=find(j))
-                        union(i,j);
+                    union(i,j);
                 }
             }
+        }
+
+        for (int i = 0; i < n; i++) {
+            find(i);
         }
         Set<Integer> set=new LinkedHashSet<>();
         for (int val : parent) {
             set.add(val);
         }
-        return set.size();
+        answer=set.size();
+        return answer;
     }
     static void union(int a,int b)
     {
         a=find(a);
         b=find(b);
+        if(a==b)
+            return;
         if(a>b)
             parent[a]=b;
         else
