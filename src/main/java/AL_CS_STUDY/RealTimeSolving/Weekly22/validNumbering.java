@@ -20,7 +20,7 @@ public class validNumbering {
                     System.out.printf("#%d 1.0*10^%d\n", i, s.length());
                 }
                 else {
-                    System.out.printf("#%d %c.0*10^%d\n", i, s.charAt(0)+1,s.length());
+                    System.out.printf("#%d %c.0*10^%d\n", i, s.charAt(0)+1,s.length()-1);
                 }
             }
         }
