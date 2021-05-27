@@ -26,7 +26,7 @@ public class TicTakTom {
                 }
             }
 
-            if (hasDot) {
+            if (!hasDot) {
                 if (WhoIsWinner() == 'O') {
                     sb.append("O won");
                 }
