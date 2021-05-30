@@ -31,7 +31,7 @@ public class NewGame2 {
             }
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < k; i++) {
             st = new StringTokenizer(br.readLine());
             int y = Integer.parseInt(st.nextToken()) - 1;
             int x = Integer.parseInt(st.nextToken()) - 1;
@@ -54,7 +54,7 @@ public class NewGame2 {
         for (int t = 1; t <= 1000; t++) {
             for (int j = 0; j < k; j++) {
                 Node horse = horses[j];
-                int num=orderSearch(j, horses[j].y, horses[j].x);
+                int idx=orderSearch(j, horses[j].y, horses[j].x);
 
                 int ny=dy[horse.d]+horse.y;
                 int nx=dx[horse.d]+horse.x;
@@ -63,12 +63,11 @@ public class NewGame2 {
                     horse.setD((horse.d+2)%4);
                     ny=dy[horse.d]+ horse.y;
                     nx=dx[horse.d]+ horse.x;
-                    System.out.println(ny+" "+nx);
                     if (ny < 0 || nx < 0 || ny >= n || nx >= n ||colors[ny][nx] == 2) {
                         continue;
                     }
                 }
-                if(move(horse.y,horse.x,ny,nx,num,colors[ny][nx]))
+                if(move(horse.y,horse.x,ny,nx,idx,colors[ny][nx]))
                 {
                     return t;
                 }
@@ -77,13 +76,14 @@ public class NewGame2 {
         return -1;
     }
 
-    private static boolean move(int y, int x, int ny, int nx, int num, int colorVal) {
-        while (map[y][x].size()>num)
+    private static boolean move(int y, int x, int ny, int nx, int idx, int colorVal) {
+//        A번 말의 위에 다른 말이 있는 경우에는 A번 말과 위에 있는 모든 말이 이동한다.
+        while (map[y][x].size()>idx)
         {
             int temp=-1;
             if(colorVal==0)
             {
-                temp=map[y][x].remove(num);
+                temp=map[y][x].remove(idx);
             }
             else
             {
