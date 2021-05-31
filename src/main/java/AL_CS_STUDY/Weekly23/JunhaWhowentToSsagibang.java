@@ -77,23 +77,24 @@ public class JunhaWhowentToSsagibang {
             {
                 int pollValue = endTime.poll();
                 cnt[pollValue]++;
-                pq.offer(new Computer(p[i].end,pollValue));
+                pq.offer(new Computer(pollValue,p[i].end));
             }
             else
             {
                 cnt[idx]++;
-                pq.offer(new Computer(p[i].end,idx++));
+                pq.offer(new Computer(idx++,p[i].end));
             }
         }
-
+            StringBuilder sb=new StringBuilder();
         for (int i = 0; i < 100001; i++) {
             if(cnt[i]==0)
             {
                 System.out.println(i);
                 break;
             }
-            System.out.print(cnt[i]+" ");
+            sb.append(cnt[i]+" ");
         }
+        System.out.println(sb);
 
     }
 
