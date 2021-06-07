@@ -42,7 +42,7 @@ public class NewGame2 {
         n = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
         map = new ArrayList[n][n];
-        horses = new Node[n];
+        horses = new Node[k];
         colors=new int[n][n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -77,11 +77,11 @@ public class NewGame2 {
 
                 int ny = dy[cur.d] + cur.y;
                 int nx = dx[cur.d] + cur.x;
-                if (ny < 0 || nx < 0 || ny >= n && nx >= n || colors[ny][nx] == 2) {
+                if (ny < 0 || nx < 0 || ny >= n || nx >= n || colors[ny][nx] == 2) {
                     cur.setD((cur.d + 2) % 4);
                     ny = dy[cur.d] + cur.y;
                     nx = dx[cur.d] + cur.x;
-                    if(ny < 0 || nx < 0 || ny >= n && nx >= n || colors[ny][nx] == 2)
+                    if(ny < 0 || nx < 0 || ny >= n || nx >= n || colors[ny][nx] == 2)
                     {
                         continue;
                     }
@@ -105,7 +105,7 @@ public class NewGame2 {
                     }
 
                     horses[moveHorseNumber].setY(ny);
-                    horses[moveHorseNumber].setY(nx);
+                    horses[moveHorseNumber].setX(nx);
                     map[ny][nx].add(moveHorseNumber);
                }
                if(map[ny][nx].size()>=4)
