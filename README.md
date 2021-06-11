@@ -1,5 +1,4 @@
-# PS    [Velog_LINK](https://velog.io/@admin1194)
-##coding Test
+# PS [blogLink](https://velog.io/@admin1194)
 ##Language : JAVA
 
 
@@ -7,11 +6,11 @@
 ## 프로그래머스, 백준, SWEA
 
 
-PS 기록 양식
-
 [PS_LINK](https://velog.io/@admin1194)
+
 ***
-<br><br>
+<br>
+
 ### 🌕제
 
 ---
@@ -28,5 +27,6 @@ PS 기록 양식
 ### 💻Code
 
 ---
+
 ```javascript
 ```
