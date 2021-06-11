@@ -1,4 +1,4 @@
-package AL_CS_STUDY.RealTimeSolving.Weeekly24;
+package AL_CS_STUDY.RealTimeSolving.Weekly24;
 
 import java.io.BufferedReader;
 import java.io.IOException;
