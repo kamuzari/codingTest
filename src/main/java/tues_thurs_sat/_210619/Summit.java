@@ -15,12 +15,15 @@ public class Summit {
 
     static class Node {
         private int idx, y, x, cnt;
+        private int restCnt;
 
-        public Node(int idx, int y, int x, int cnt) {
+
+        public Node(int idx, int y, int x, int cnt, int restCnt) {
             this.idx = idx;
             this.y = y;
             this.x = x;
             this.cnt = cnt;
+            this.restCnt = restCnt;
         }
 
         @Override
@@ -47,19 +50,20 @@ public class Summit {
             for (int j = 0; j < m; j++) {
                 map[i][j] = str[j].charAt(0);
                 if (map[i][j] != '.') {
-                    k = Math.max(map[i][j]-'0', k);
-                    q.offer(new Node(map[i][j] - '0', i, j, 0));
+                    int val=map[i][j]-'0';
+                    k = Math.max(val, k);
+                    q.offer(new Node(val, i, j, 1,val));
                 }
             }
         }
         v = new Node[k + 1][n][m];
         q.stream().forEach(node -> {
-            v[node.idx][node.y][node.x] = new Node(node.idx, node.y, node.x, node.cnt);
+            v[node.idx][node.y][node.x] = new Node(node.idx, node.y, node.x, node.cnt,node.restCnt);
         });
         int min = Integer.MAX_VALUE;
         while (!q.isEmpty()) {
             Node cur = q.poll();
-            System.out.println(cur);
+//            System.out.println(cur);
             if (check(cur.y, cur.x)) {
                 min = Math.min(min, calc(cur));
             }
@@ -69,13 +73,23 @@ public class Summit {
                 int nx = dx[i] + cur.x;
 
                 if (ny >= 0 && nx >= 0 && ny < n && nx < m && v[cur.idx][ny][nx]== null) {
-                    q.offer(new Node(cur.idx,ny,nx,cur.cnt+1));
-                    v[cur.idx][ny][nx]=new Node(cur.idx,ny,nx,cur.cnt+1);
+                    if(cur.restCnt==0)
+                    {
+                        q.offer(new Node(cur.idx,ny,nx,cur.cnt+1,cur.idx));
+                         v[cur.idx][ny][nx]=new Node(cur.idx,ny,nx,cur.cnt+1,0);
+                    }
+                    else if(cur.restCnt>0)
+                    {
+                        q.offer(new Node(cur.idx,ny,nx,cur.cnt,cur.restCnt-1));
+                        v[cur.idx][ny][nx]=new Node(cur.idx,ny,nx,cur.cnt,0);
+                    }
                 }
 
 
             }
         }
+        if(min==Integer.MAX_VALUE)
+            System.out.println(-1);
         System.out.println(min);
 
     }
@@ -85,7 +99,6 @@ public class Summit {
         for (int i = 1; i <= k; i++) {
             sum += v[i][cur.y][cur.x].cnt;
         }
-        System.out.println(sum);
         return sum;
     }
 
