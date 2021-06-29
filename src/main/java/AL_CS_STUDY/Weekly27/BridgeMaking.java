@@ -65,8 +65,7 @@ public class BridgeMaking {
             }
         }
         
-        bridegeMake();
-        System.out.println(sortByDist);
+        bridgeMake();
         parent=new int[cnt];
         for (int i = 1; i <cnt ; i++) {
             parent[i]=i;
@@ -75,17 +74,28 @@ public class BridgeMaking {
         while (!sortByDist.isEmpty())
         {
             Bridge bridge = sortByDist.poll();
-            if(find(bridge.v1)!= bridge.v2)
+
+            if(find(bridge.v1)!=find( bridge.v2))
             {
                 union(bridge.v1,bridge.v2);
                 answer+=bridge.dist;
             }
         }
-
-        System.out.println(answer);
+        for (int i = 1; i < cnt; i++) {
+            find(i);
+        }
+        // 모든 점들이 연결되있는지 판단.
+        int criteria = parent[1];
+        for (int i = 2; i < cnt; i++) {
+            if(criteria==parent[i])
+                continue;
+            System.out.println(-1);
+            return;
+        }
+        System.out.println(answer==0?-1:answer);
     }
 
-    private static void bridegeMake() {
+    private static void bridgeMake() {
         while (!Area.isEmpty())
         {
             Node cur = Area.poll();
@@ -101,8 +111,7 @@ public class BridgeMaking {
                         {
                             if(dist!=1)
                             {
-                                System.out.println(dist);
-                                sortByDist.offer(new Bridge(map[cur.y][cur.x],map[ny][nx],dist+1));
+                                sortByDist.offer(new Bridge(map[cur.y][cur.x],map[ny][nx],dist));
                             }
                         }
                         break;
@@ -132,7 +141,7 @@ public class BridgeMaking {
                 v[ny][nx]=true;
                 map[ny][nx]=number;
                 q.offer(new Node(ny,nx));
-                Area.add(new Node(y,x));
+                Area.add(new Node(ny,nx));
             }
 
         }
@@ -162,3 +171,27 @@ public class BridgeMaking {
         return parent[a]=find(parent[a]);
     }
 }
+/*
+반례 : 모든 점이 같은 부모를 가져야 한다.
+8 8
+0 0 0 1 1 1 1 0
+0 1 1 1 1 0 1 0
+0 1 0 1 1 1 0 0
+0 1 0 0 0 1 0 0
+0 0 0 1 0 0 1 0
+0 0 0 0 0 1 0 0
+0 1 1 1 0 0 0 0
+0 1 0 0 0 1 0 0
+
+6 10
+1 1 1 1 1 1 1 1 1 1
+1 0 0 0 0 0 1 0 0 0
+1 0 1 0 1 0 1 0 0 1
+1 0 1 1 1 0 1 0 0 1
+0 0 0 0 0 0 0 0 0 1
+1 1 0 1 1 1 1 1 0 1
+
+
+
+*/
+
