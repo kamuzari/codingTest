@@ -70,14 +70,18 @@ public class PartsRental {
                 map.put(part, new LinkedHashMap<>());
                 map.get(part).put(name, new Node(name, part, localDateTime, day, hour, minute));
             } else if (map.containsKey(part) ) {
+
                 if(map.get(part).containsKey(name)) {
                     //반납했을때
-                    if (map.get(part).get(name).overPeriod(localDateTime)) { // 기한 내에 냈을 때.
-                        continue;
-                    } else {
+                    if (!map.get(part).get(name).overPeriod(localDateTime)) { // 기한 초과했을 때.
                         long totalMinute = map.get(part).get(name).calc(localDateTime);
                         fineHuman.put(name, fineHuman.getOrDefault(name, 0L)+totalMinute*finesPerMinute);
                     }
+                    map.get(part).remove(name);
+                }
+                else if(!map.get(part).containsKey(name))
+                {
+                    map.get(part).put(name, new Node(name, part, localDateTime, day, hour, minute));
                 }
             }
 //            System.out.println(fineHuman);
@@ -86,18 +90,20 @@ public class PartsRental {
             System.out.println(-1);
         else
         {
-            String str[]=new String[2];
-            ArrayList<String []> list=new ArrayList<>();
+            ArrayList<String> list=new ArrayList<>();
             for (String key : fineHuman.keySet()) {
                 if(fineHuman.get(key)!=0) {
 //                    System.out.println(key + " " + fineHuman.get(key));
-                    list.add(new String[]{key,String.valueOf(fineHuman.get(key))});
+                    list.add(key);
                 }
             }
-            list.sort((s1, s2) ->{
-                return s1[0].compareTo(s2[0]);
-            } );
-            list.forEach(s -> System.out.println(s[0]+" "+s[1]));
+            if(list.size()==0)
+            {
+                System.out.println(-1);
+                return;
+            }
+           Collections.sort(list);
+            list.forEach(s -> System.out.println(s+" "+fineHuman.get(s)));
         }
     }
 }
