@@ -1,6 +1,6 @@
-package ProgrammersKit.Dev_Mathching;
+package ProgrammersKit.Dev_Matching;
 import java.util.*;
-public class Lotto {
+public class _Lotto {
     public int[] solution(int[] lottos, int[] win_nums) {
         HashMap<Integer,Integer> map=new LinkedHashMap<>();
         for(int i=0; i<win_nums.length; i++)

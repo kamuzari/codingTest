@@ -1,9 +1,9 @@
-package ProgrammersKit.Dev_Mathching;
+package ProgrammersKit.Dev_Matching;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MultiLevel_toothbrushSales {
+public class _MultiLevel_toothbrushSales {
 
     public static void main(String[] args) {
         String [] enroll={"john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"};
