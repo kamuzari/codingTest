@@ -1,5 +1,6 @@
 package ProgrammersKit.Dev_Matching;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,6 +27,10 @@ public class _MultiLevel_toothbrushSales {
             this.money = money;
         }
 
+        public void addMoney(int money){
+            this.money+=money;
+        }
+
         @Override
         public String toString() {
             return "Node{" +
@@ -44,18 +49,21 @@ public class _MultiLevel_toothbrushSales {
             map.put(me,newNode);
         }
         int  sellPrice = 100;
+
         for (int i = 0; i < seller.length; i++) {
             String sellPerson=seller[i];
             int number=amount[i];
             int totalSales=sellPrice*number;
-            double fees=totalSales*0.1;
+            int commissions=(int)(totalSales*0.1);
             Node cur = map.get(sellPerson);
-            cur.money+= totalSales-(int)fees;
-            if((int)fees!=0)
-                recursion(cur.parent,map,(int)fees);
+            cur.money+= totalSales-commissions;
+            if(commissions!=0)
+                recursion(cur.parent,map,commissions);
         }
+
 //        System.out.println(map);
         int [] answer=new int[map.size()-1];
+
         int i=0;
         for (String s : map.keySet()) {
             if(!s.equals("-"))
@@ -64,16 +72,14 @@ public class _MultiLevel_toothbrushSales {
         return answer;
     }
 
-    private static void recursion(String parent,Map<String,Node> map,int fee) {
-        if(map.get(parent).parent.equals("")) {
+    private static void recursion(String child,Map<String,Node> map,int profit) {
+        if(map.get(child).parent.equals("") || profit==0) {
             return;
         }
-        String Ancestor = map.get(parent).parent;
-        double commission=fee*0.1;
-        int addMoney=fee-(int)commission;
-        map.get(parent).money+=addMoney;
-        if((int)commission==0)
-            return;
-        recursion(Ancestor,map,(int)commission);
+        String parent = map.get(child).parent;
+        int commissions=(int)(profit*0.1);
+        int addMoney=profit-commissions;
+        map.get(child).addMoney(addMoney);
+        recursion(parent,map,commissions);
     }
 }
