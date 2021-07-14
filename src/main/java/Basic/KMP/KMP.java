@@ -7,12 +7,13 @@ import java.util.*;
 
 public class KMP {
     static String org = "ABABABABC";
-    static String pattern = "AB";
+    static String pattern = "ABABABABC";
     private static int[] pi;
 
     public static void main(String[] args) throws IOException {
         pi = new int[pattern.length()];
         getPi();
+        System.out.println(Arrays.toString(pi));
         kmp();
     }
 
@@ -23,7 +24,7 @@ public class KMP {
             {
                 j=pi[j-1];
             }
-            if(pattern.charAt(i)==org.charAt(j))
+            if(pattern.charAt(i)==pattern.charAt(j))
             {
                 pi[i]=++j;
             }
@@ -42,7 +43,7 @@ public class KMP {
             {
                 if(j==pattern.length()-1)
                 {
-                    list.add(i-pattern.length()+1);
+                    list.add(i-(pattern.length()-1));
                     j=pi[j];
                 }
                 else
