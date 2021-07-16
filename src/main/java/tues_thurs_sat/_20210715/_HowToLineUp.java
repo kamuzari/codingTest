@@ -3,7 +3,7 @@ import java.util.*;
 
 public class _HowToLineUp {
     public static void main(String[] args) {
-        solution(4,10);
+        solution(4,9);
     }
     public static int[] solution(int n, long k) {
         int[] answer = new int[n];
@@ -15,6 +15,7 @@ public class _HowToLineUp {
             long num = dp[n-1];
 
             if(k % num == 0){
+                // 구간중 가장 마지막.
                 res.add(list.remove((int) ((k/num)-1)));
                 break;
             }else{
