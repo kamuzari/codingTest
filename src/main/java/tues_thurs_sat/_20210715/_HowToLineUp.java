@@ -56,4 +56,35 @@ public class _HowToLineUp {
         return dp;
     }
 
+    public static int[] solution2(int n, long k) {
+        int[] answer = new int[n];
+        long temp = k-1 ;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            list.add(i);
+        }
+        for (int i = 0; i < n; i++) {
+            if (temp == 0) {
+                answer[i] = list.get(0);
+                list.remove(0);
+                continue;
+            }
+            long factorial = factorial(n - i - 1);
+            long num = temp / factorial;
+            answer[i] = list.get((int)num);
+            list.remove((int)num);
+            temp = temp % factorial;
+        }
+
+        return answer;
+    }
+
+    public static long factorial(int n) {
+        long result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
 }
