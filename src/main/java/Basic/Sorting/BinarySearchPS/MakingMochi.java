@@ -27,6 +27,7 @@ public class MakingMochi {
     private static void binarySearch(int target) {
         int l=0;
         int r=2_000_000_000; // 떡의 최대길이 또는 한계값.
+        int answer=0;
         while (l<=r) {
             int mid = (l + r) / 2;
             int restLength = calc(mid);
@@ -34,15 +35,15 @@ public class MakingMochi {
             if (restLength == askedMochiLength) {
                 System.out.println(mid);
                 return;
-            } else if (restLength > askedMochiLength) {
+            } else if (restLength >= askedMochiLength) {
+                answer=mid;
                 l = mid+ 1;
-            } else if (restLength <= askedMochiLength)
+            } else if (restLength < askedMochiLength)
             {
-
                 r=mid-1;
             }
         }
-        System.out.println(l);
+        System.out.println(answer);
     }
 
     private static int calc(int h) {
