@@ -27,12 +27,12 @@ public class RouterInstallation {
         while (start<=end)
         {
             int mid=(start+end)/2;
-            int val=arr[0];
+            int interval=arr[0];
             int cnt=1;
             for (int i = 1; i <n ; i++) {
-                if(arr[i]>=val+mid)
+                if(arr[i]>=interval+mid)
                 {
-                    val=arr[i];
+                    interval=arr[i];
                     cnt++;
                 }
             }
