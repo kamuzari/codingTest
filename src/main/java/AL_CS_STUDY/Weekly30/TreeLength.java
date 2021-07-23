@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
-
+//https://www.acmicpc.net/problem/1967
 public class TreeLength {
     static class Node implements Comparable<Node> {
         private int idx, weight;

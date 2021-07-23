@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 /*
+https://www.acmicpc.net/problem/21611
 격자의 가장 왼쪽 윗 칸은 (1, 1)이고, 가장 오른쪽 아랫 칸은 (N, N)
 마법사 상어는 ((N+1)/2, (N+1)/2)
 N = 홀수
