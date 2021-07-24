@@ -23,5 +23,6 @@
 ### [SWEA]
 
 ---
-- [RT Weekly29](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly29/Weekly29.md)
+- [RT Weekly29](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly29/zRT_Weekly29.md)
+- [RT Weekly23](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly30/zRT_Weekly30.md)
 
