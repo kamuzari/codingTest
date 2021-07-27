@@ -19,6 +19,7 @@
 ----
 
 - [Weekly30](src/main/java/AL_CS_STUDY/Weekly30/zWeekly30.md)
+- [Weekly31](src/main/java/AL_CS_STUDY/Weekly31/zWeekly31.md)
 
 ### [SWEA]
 
