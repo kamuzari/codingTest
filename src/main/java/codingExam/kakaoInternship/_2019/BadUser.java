@@ -1,6 +1,5 @@
-package kakaoInternship._2019;
+package codingExam.kakaoInternship._2019;
 
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 

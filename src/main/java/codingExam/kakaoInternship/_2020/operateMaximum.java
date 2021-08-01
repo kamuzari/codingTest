@@ -1,4 +1,4 @@
-package kakaoInternship._2020;
+package codingExam.kakaoInternship._2020;
 
 import java.util.ArrayList;
 
