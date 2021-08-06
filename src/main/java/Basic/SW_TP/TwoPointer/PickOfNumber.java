@@ -1,5 +1,5 @@
 package Basic.SW_TP.TwoPointer;
-// https://www.acmicpc.net/problem/2230
+// https://www.acmicpc.net/problem/2230  ref https://steady-coding.tistory.com/60
 
 import java.io.*;
 import java.util.Arrays;
