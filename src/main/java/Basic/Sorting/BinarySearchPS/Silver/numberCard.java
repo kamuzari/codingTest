@@ -1,4 +1,4 @@
-package Basic.Sorting.BinarySearchPS;
+package Basic.Sorting.BinarySearchPS.Silver;
 // https://www.acmicpc.net/problem/10815
 
 import java.io.*;
