@@ -19,7 +19,7 @@
 ### had the Problem
 
 - 주의사항 : while 종료조건
-    - while(endPointer <len) 
+    - while(endPointer <len) (부분 합을 구할 때.) 
     - 이 경우  1 3 인 배열의 값들이 들어있는 곳에서 목표값이 3일 때 1을 더하고 3을 더하고 while문을 조건을 체크할 때 종료가 된다.
     - 그러므로 if 문 중간에 else if(e>len-1) break를 처리해야 인덱스 범위 초과가 안나고 적절히 답을 구할 수 있다. 
 
@@ -39,5 +39,5 @@
     - 고정된 범위는 가장 앞에 있는 dpFirst를 이용하여 주어진 범위안 인덱스인지 판단한고 pop한다.
     - 해당 값이 다른 값을 대체 할 수 있는 조건에 만족한다면 LastPop을 하고 해당 값을 삽입한다.
 
-
+### [SlidingWindow Problem](./SlidingWindow/zSlidingWindow.md)
 
