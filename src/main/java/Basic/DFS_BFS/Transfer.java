@@ -4,58 +4,59 @@ import java.io.*;
 import java.util.*;
 
 public class Transfer {
-    public static int INF=Integer.MAX_VALUE;
-    static int n, k, m;
-    public static void main(String args[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        ArrayList<ArrayList<Integer>> hyper = new ArrayList<>();
-        for(int i=0; i<=n+m+10; i++){
-            hyper.add(new ArrayList<Integer>());
+    public static int dist[];
+    public static  ArrayList<Integer> list[];
+    public static final int INF=Integer.MAX_VALUE;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int n=Integer.parseInt(st.nextToken());
+        int k=Integer.parseInt(st.nextToken());
+        int m=Integer.parseInt(st.nextToken());
+        list=new ArrayList[n+1+m+1];
+
+        for (int i = 0; i < n+m+2; i++) {
+            list[i]=new ArrayList<>();
         }
 
-        for(int i=1; i<=m; i++){
-            int dummy = n+i;
+        for (int i = 1; i <= m; i++) {
+            int dummy=n+i;
             st=new StringTokenizer(br.readLine());
-            for(int j=0; j<k; j++){
-                int node = Integer.parseInt(st.nextToken());
-
-                hyper.get(dummy).add(node);
-                hyper.get(node).add(dummy);
+            for (int j = 0; j < k; j++) {
+                int node=Integer.parseInt(st.nextToken());
+                list[dummy].add(node);
+                list[node].add(dummy);
             }
         }
 
-        int d[] = new int[n+m+10];
-        Arrays.fill(d, INF);
+        dist=new int[n+m+2];
+        Arrays.fill(dist,INF);
 
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q=new LinkedList<>();
         q.add(1);
-        d[1]=1;
+        dist[1]=1;
+        while (!q.isEmpty())
+        {
+            Integer cur = q.poll();
+            if(cur==n)
+                break;
 
-        int step=0;
-        while(!q.isEmpty()){
-            int qSize = q.size();
-
-            while(qSize-->0){
-                int p = q.poll();
-
-                if(p==n) break;
-
-                for(int t: hyper.get(p)){
-                    if(d[t]>d[p]+1){
-                        if(p<=n) d[t] = d[p]+1;
-                        else d[t]=d[p];
-                        q.add(t);
+            for (Integer node : list[cur]) {
+                if(dist[node]>dist[cur]+1)
+                {
+                    if(node<=n)
+                    {
+                        dist[node]=dist[cur]+1;
                     }
+                    else if(node>n)
+                    {
+                        dist[node]=dist[cur];
+                    }
+                    q.offer(node);
                 }
             }
-
-            step++;
         }
-
-        System.out.println(d[n]==INF? -1:d[n]); // 출력 방식 1
+        int answer=dist[n]==INF? -1:dist[n];
+        System.out.println(answer);
     }
 }
