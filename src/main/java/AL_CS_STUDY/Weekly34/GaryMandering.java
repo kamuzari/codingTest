@@ -2,7 +2,7 @@ package AL_CS_STUDY.Weekly34;
 
 import java.io.*;
 import java.util.*;
-
+//https://www.acmicpc.net/problem/17471
 public class GaryMandering {
     static final int MAX = Integer.MAX_VALUE;
     static List<Integer> list[];
