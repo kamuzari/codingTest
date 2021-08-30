@@ -21,12 +21,12 @@
 
 ----
 
-- [Weekly30](src/main/java/AL_CS_STUDY/Weekly30/zWeekly30.md)
-- [Weekly31](src/main/java/AL_CS_STUDY/Weekly31/zWeekly31.md)
+- [Weekly30](src/main/java/AL_CS_STUDY/Weekly_30to40/Weekly30/zWeekly30.md)
+- [Weekly31](src/main/java/AL_CS_STUDY/Weekly_30to40/Weekly31/zWeekly31.md)
 
 ### [SWEA]
 
 ---
-- [RT Weekly29](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly29/zRT_Weekly29.md)
-- [RT Weekly23](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly30/zRT_Weekly30.md)
+- [RT Weekly29](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly_20to30/Weekly29/zRT_Weekly29.md)
+- [RT Weekly23](src/main/java/AL_CS_STUDY/RealTimeSolving/Weekly_30to40/Weekly30/zRT_Weekly30.md)
 
