@@ -32,7 +32,7 @@ public class OuterWallCheck {
         return min;
     }
 
-    public void perm(int cnt, int postion, int v) {
+    public void perm(int cnt, int curIdx, int v) {
         if(cnt>d.length)
         {
             return;
@@ -42,16 +42,16 @@ public class OuterWallCheck {
             return;
         }
         for (int i = 0; i < w.length; i++) {
-            int nextPos = (postion + i) % w.length;
-            int diff = w[nextPos] - w[postion];
-            if(nextPos <postion)
+            int nextPosIdx = (curIdx + i) % w.length;
+            int diffValue = w[nextPosIdx] - w[curIdx];
+            if(nextPosIdx <curIdx)
             {
-                diff+=N;
+                diffValue+=N;
             }
-            if (diff > d[d.length - cnt]) {
+            if (diffValue > d[d.length - cnt]) {
                 break;
             }
-            v = v | 1 << nextPos;
+            v = v | 1 << nextPosIdx;
         }
 
         if(v==(1<<w.length)-1)
