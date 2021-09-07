@@ -29,21 +29,21 @@ public class CandidateKey {
         return candidates.size();
     }
 
-    private void comb(int idx, int cnt, Set<Integer> set) {
+    private void comb(int idx, int cnt, Set<Integer> pickColum) {
         if (cnt == target) {
-            if (isUnique(set)) {
+            if (isUnique(pickColum)) {
                 for (Set<Integer> candidate : candidates) {
-                    if (set.containsAll(candidate)) {
+                    if (pickColum.containsAll(candidate)) {
                         return;
                     }
                 }
-                candidates.add(set);
+                candidates.add(pickColum);
             }
 
             return;
         }
         for (int i = idx; i < col; i++) {
-            HashSet<Integer> parameter = new HashSet<>(set);
+            HashSet<Integer> parameter = new HashSet<>(pickColum);
             parameter.add(i);
             comb(idx + 1, cnt + 1, parameter);
         }
