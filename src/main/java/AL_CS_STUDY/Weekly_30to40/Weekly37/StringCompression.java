@@ -1,5 +1,5 @@
 package AL_CS_STUDY.Weekly_30to40.Weekly37;
-
+//https://programmers.co.kr/learn/courses/30/lessons/60057?language=java
 public class StringCompression {
     public static void main(String[] args) {
         StringCompression stringCompression =
