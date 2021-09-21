@@ -4,7 +4,8 @@ import java.util.*;
 
 public class PGM17685_AutoComplete {
     public static void main(String[] args) {
-
+        final PGM17685_AutoComplete sol = new PGM17685_AutoComplete();
+        sol.solution(new String[]{"go","gone","guild"});
     }
 
     Node root = new Node();

@@ -4,27 +4,28 @@ import java.util.*;
 
 public class PGM86048_SevenWeekly {
     public static void main(String[] args) {
-
+        int e[] = {1, 4, 2, 3};
+        int l[] = {2, 1, 3, 4};
+        final PGM86048_SevenWeekly t = new PGM86048_SevenWeekly();
+        t.solution(e, l);
     }
+
     public int[] solution(int[] enter, int[] leave) {
-        int n=enter.length;
+        int n = enter.length;
         int[] answer = new int[n];
-        List<Integer>room = new ArrayList();
-        int idx=0;
-        for(int i=0; i<n;i++){
+        Set<Integer> room = new HashSet<>();
+        int idx = 0;
+        for (int i = 0; i < n; i++) {
             room.add(enter[i]);
-            for(int j=0; j<room.size(); j++){
-                if(enter[i]==room.get(j)){
-                    answer[room.get(j)-1] = room.size()-1;
-                }else{
-                    answer[room.get(j)-1]++;
-                }
+            for (Integer val : room) {
+                answer[val - 1]++;
             }
-            while(idx<n && room.contains(leave[idx])){
-                room.remove(Integer.valueOf(leave[idx++]));
+            answer[enter[i] - 1] = room.size()-1;
+
+            while (idx < n && room.contains(leave[idx])) {
+                room.remove(leave[idx++]);
             }
         }
-
         return answer;
     }
 }
