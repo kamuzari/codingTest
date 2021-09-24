@@ -36,29 +36,12 @@ public class BOJ2533_socialNetworkService {
 
     }
 
-    public static void dfs(int cur) {
-
-        dp[cur][0] = 0;
-        dp[cur][1] = 1;
-        visited[cur] = true;
-
-        LinkedList<Integer> list = adjList[cur];
-
-        for(int i = 0; i < list.size(); i++) {
-            if(!visited[list.get(i)]) {
-                dfs(list.get(i)); // 인접 정점을 시작으로 다시 dfs
-                dp[cur][0] += dp[list.get(i)][1];
-                dp[cur][1] += Math.min(dp[list.get(i)][0], dp[list.get(i)][1]);
-            }
-        }
-    }
-
     public static void dp(int cur, int parent) {
         dp[cur][0] = 0;
         dp[cur][1] = 1;
 
-        for(int next : adjList[cur]) {
-            if(next != parent) {
+        for (Integer next : adjList[cur]) {
+            if (next != parent) {
                 dp(next, cur);
                 dp[cur][0] += dp[next][1];
                 dp[cur][1] += Math.min(dp[next][0], dp[next][1]);
