@@ -45,7 +45,7 @@ public class BOJ2304_WareHousePolyGon {
             }
         }
         curTop = arr[n - 1];
-        for (int i = n-1; i >= maxX; i--) {
+        for (int i = n-2; i >= maxX; i--) {
             if (curTop.y <= arr[i].y) {
                 answer += (curTop.x - arr[i].x) * curTop.y;
                 curTop = arr[i];
