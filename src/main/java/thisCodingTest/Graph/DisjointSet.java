@@ -53,6 +53,7 @@ public class DisjointSet {
         return parent[element]=find(parent[element]); // 경로 압축.
 //        return find(parent[element]);
 
+
     }
 
 }
