@@ -20,7 +20,7 @@ public class deploySoldiers {
         }
 //        System.out.println(Arrays.toString(combatPower));
 
-        //LIS 최장증가수열
+        //BOJ11053_LIS 최장증가수열
         for (int i = 1; i <n ; i++) {
             for (int j = 0; j <i ; j++) {
                 if(combatPower[i]>combatPower[j])
