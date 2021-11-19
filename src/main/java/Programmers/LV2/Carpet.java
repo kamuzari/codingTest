@@ -1,4 +1,4 @@
-package Programmers;
+package Programmers.LV2;
 
 public class Carpet {
     public int[] solution(int brown, int yellow) {
