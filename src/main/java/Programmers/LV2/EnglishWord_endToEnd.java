@@ -1,4 +1,4 @@
-package Programmers;
+package Programmers.LV2;
 import java.util.*;
 public class EnglishWord_endToEnd {
     Set<String> wordSet=new HashSet<>();
