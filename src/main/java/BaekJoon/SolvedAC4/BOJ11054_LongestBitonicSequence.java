@@ -1,4 +1,4 @@
-package BaekJoon;
+package BaekJoon.SolvedAC4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
