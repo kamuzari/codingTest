@@ -3,7 +3,6 @@ package Programmers.LV3;
 public class ThanksgivingTraffic {
     private static int len;
 
-    // 3600 * 1000
     public int solution(String lines[]) {
         int answer = 0;
         len = lines.length;
