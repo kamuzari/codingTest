@@ -5,7 +5,9 @@ import java.util.*;
 public class MultiLevelSales {
 
     /**
-     * - enroll : 직원들 이름 - referal : 해당 직원들 번호를 추천한 장본인 - seller, amount : 판매자와 판매량 - logic 거꾸로 올라가기
+     * - enroll : 직원들 이름 -
+     *   referal : 해당 직원들 번호를 추천한 장본인
+     *   - seller, amount : 판매자와 판매량 - logic 거꾸로 올라가기
      * ! 추천인
      */
     class Node {
