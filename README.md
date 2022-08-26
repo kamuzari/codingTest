@@ -11,7 +11,7 @@
 ### [programmers]
 
 ---
-- [Dev_Matching](src/main/java/Programmers/ProgrammersKit/Dev_Matching/Dev_Matching.md)
+- [Dev_Matching](src/main/java/programmers/Kits/Dev_Matching/Dev_Matching.md)
 - [21-07-15 CTU](src/main/java/tues_thurs_sat/_202107/_20210715/z20210715.md)
 - [21-07-30 CTU](src/main/java/tues_thurs_sat/_202107/_20210730/z20210730.md)
 - [21-08-05 CTU](src/main/java/tues_thurs_sat/_202108/_20210805/z20210805.md)
