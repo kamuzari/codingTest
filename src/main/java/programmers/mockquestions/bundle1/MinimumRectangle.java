@@ -1,4 +1,4 @@
-package mockquestions.bundle1;
+package programmers.mockquestions.bundle1;
 
 public class MinimumRectangle {
 	public int solution(int[][] sizes) {
