@@ -22,11 +22,9 @@ public class DifferentBitsLessThan2 {
 					result.append(binary.substring(1));
 				} else {
 					int zero = binary.lastIndexOf("0");
-					result.append(binary.substring(0, zero) + "1");
-					int one = binary.indexOf("1", zero);
-					result.append(0);
-					result.append(binary.substring(one + 1));
+					result.append(binary.substring(0, zero) + "10"+binary.substring(zero+2));
 				}
+
 				answer[i] = Long.parseLong(result.toString(), 2);
 			}
 		}
