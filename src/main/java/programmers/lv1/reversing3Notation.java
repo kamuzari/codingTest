@@ -5,7 +5,7 @@ public class reversing3Notation {
 	public int solution(int n) {
 		String result=translateTo3Noation(n);
 
-		return tralateTo10Notation(3,result);
+		return Integer.parseInt(result,3);
 	}
 
 	private String translateTo3Noation(int val){
