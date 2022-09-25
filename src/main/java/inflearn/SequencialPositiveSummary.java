@@ -40,5 +40,28 @@ public class SequencialPositiveSummary {
 		}
 
 		System.out.println(answer);
+
+		SequencialPositiveSummary sequencialPositiveSummary = new SequencialPositiveSummary();
+		int solution = sequencialPositiveSummary.solution(15);
+		System.out.println(solution);
+	}
+
+	/**
+	 * note : 수학적 풀이
+	 *
+	 */
+	public int solution(int n){
+		int answer=0;
+		int cnt=1;
+
+		n-=cnt;
+
+		while (n>0){
+			cnt++;
+			n-=cnt;
+			if(n%cnt==0) answer++;
+		}
+
+		return answer;
 	}
 }
