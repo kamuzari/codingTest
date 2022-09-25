@@ -33,7 +33,12 @@ public class MaximumProfit {
 
 			if (end - start < k) {
 				sum += profits[end++];
-			} else if (end - start >= k) {
+			} else if (end - start > k) {
+				sum -= profits[start++];
+				maxProfit = Math.max(maxProfit, sum);
+			}
+
+			if(end- start == k){
 				maxProfit = Math.max(maxProfit, sum);
 				sum -= profits[start++];
 			}
