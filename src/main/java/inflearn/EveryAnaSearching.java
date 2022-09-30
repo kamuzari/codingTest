@@ -63,3 +63,12 @@ public class EveryAnaSearching {
 		System.out.println(answer);
 	}
 }
+/**
+ s_jungim *
+ aceplan7
+ * KT
+ * 01091877574
+ id : sinji570715
+
+ pw : kkji0428**
+ */
