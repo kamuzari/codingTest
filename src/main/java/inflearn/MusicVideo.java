@@ -26,35 +26,35 @@ public class MusicVideo {
 			dvds[i] = Integer.parseInt(st.nextToken());
 		}
 
-		Arrays.sort(dvds);
+		int left = Arrays.stream(dvds).max().orElseGet(() -> 0);
+		int right = Arrays.stream(dvds).sum();
 		int answer = 0;
-		int minCapacity = Arrays.stream(dvds).max().orElseGet(() -> 0);
-		int maxCapacity = Arrays.stream(dvds).sum();
 
-		while (minCapacity <= maxCapacity) {
-			int promisingCapacity = (minCapacity + maxCapacity) >> 1;
+		while (left <= right) {
+			int promising = (left + right) >> 1;
 
-			int predication = predicate(dvds, promisingCapacity);
-			if (predication <= m) {
-				answer = promisingCapacity;
-				maxCapacity = promisingCapacity - 1;
+			if (getGroup(dvds, promising) <= m) {
+				answer = promising;
+				right = promising - 1;
 			} else {
-				minCapacity = promisingCapacity + 1;
+				left = promising + 1;
 			}
 		}
 
 		System.out.println(answer);
+
 	}
 
-	private static int predicate(int[] dvds, int promisingCapacity) {
+	private static int getGroup(int[] dvds, int promising) {
 		int group = 1;
 		int sum = 0;
+
 		for (int dvd : dvds) {
-			if (sum + dvd > promisingCapacity) {
+			if (sum + dvd <= promising) {
+				sum += dvd;
+			} else {
 				group++;
 				sum = dvd;
-			} else {
-				sum += dvd;
 			}
 		}
 
@@ -62,7 +62,4 @@ public class MusicVideo {
 	}
 }
 
-/**
-6 5 8 5 6 8 7 6 6 7
-5 5 6 6 6 6 7 7 8 8
- */
+
