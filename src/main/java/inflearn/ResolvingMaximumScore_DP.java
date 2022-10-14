@@ -3,15 +3,9 @@ package inflearn;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
-public class ResolvingMaximumScore_DP_False {
-	/**
-	 * note : 한 유형당 1문제만 풀 수 있다. (no idea)
-	 */
+public class ResolvingMaximumScore_DP {
 	static class Problem {
 		private int score;
 		private int time;
@@ -41,27 +35,13 @@ public class ResolvingMaximumScore_DP_False {
 			problems[i] = new Problem(score, time);
 		}
 
-		Arrays.sort(problems, (a, b) -> {
-			if (a.time == b.time) {
-				return a.score - b.score;
-			}
-
-			return a.time - b.time;
-		});
-
 		int[] scores = new int[m + 1];
-		Set<Integer>[] resovled = new Set[m+1];
-
-		Arrays.fill(resovled, new HashSet<>());
 
 		for (int i = 0; i < n; i++) {
 			Problem criteria = problems[i];
-			for (int j = criteria.time; j <= m; j++) {
-				if (scores[j] < scores[j - criteria.time] + criteria.score && !resovled[j - criteria.time].contains(i) ) {
-					scores[j] = scores[j - criteria.time] + criteria.score;
-					resovled[j] = new HashSet<>(resovled[j - criteria.time]);
-					resovled[j].add(i);
-				}
+			// hint - 순차적으로 접근하면 j<=m 똑같은 문제를 또 푸는 문제가 발생한다!
+			for (int j = m; j >= criteria.time; j--) {
+				scores[j] = Math.max(scores[j], scores[j - criteria.time] + criteria.score);
 			}
 		}
 
