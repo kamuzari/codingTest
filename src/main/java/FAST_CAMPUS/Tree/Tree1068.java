@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Tree {
+public class Tree1068 {
 
 	private static List<Integer>[] parents;
 	private static int answer;
