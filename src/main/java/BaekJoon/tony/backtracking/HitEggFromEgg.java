@@ -86,7 +86,7 @@ public class HitEggFromEgg {
 				pick(cnt + 1);
 			}
 		}
-
 	}
+
 
 }
