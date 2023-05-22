@@ -31,7 +31,6 @@ public class Sensor {
 	 *  3. 집중국의 수신 가능 역역은 고속도로 상에서 연결된 구간으로 나타나게 된다 ? (무슨말이지? pass)
 	 *  4 . 유지비 문제로 각 집중국의 수신 가능 영역의 길이의 합을 최소화 해야 한다.
 	 *
-	 *
 	 */
 	static Scanner sc=new Scanner(System.in);
 	static StringTokenizer st;
