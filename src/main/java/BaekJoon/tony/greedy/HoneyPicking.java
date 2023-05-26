@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class HoneyPicking {
 
-	public static void main(String[] args) throws java.lang.Exception {
+	public static void main(String[] args) {
 		Reader reader = new Reader();
 		int n = reader.n;
 		int[] honies = reader.arr;
