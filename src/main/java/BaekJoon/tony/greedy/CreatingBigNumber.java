@@ -28,7 +28,8 @@ public class CreatingBigNumber {
 			if (s.isEmpty()) {
 				s.offerLast(val);
 			} else {
-				while (!s.isEmpty() && s.size() + (n - i) > capacity && s.peekLast() < val) {
+				boolean isValid = s.size() + (n - i) > capacity; // 현재 위치에서 앞자리를 버려도 n-k개 만큼의 숫자를 만들 수 있는가?
+				while (!s.isEmpty() && isValid && s.peekLast() < val) {
 					s.removeLast();
 				}
 
