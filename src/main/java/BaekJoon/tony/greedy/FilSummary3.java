@@ -24,13 +24,13 @@ public class FilSummary3 {
 			}
 
 			//logic
-			PriorityQueue<Integer> pq = new PriorityQueue<>();
-			Arrays.stream(arr).forEach(pq::offer);
-			int result = 0;
+			PriorityQueue<Long> pq = new PriorityQueue<>();
+			Arrays.stream(arr).mapToLong(v -> v).forEach(pq::offer);
+			long result = 0;
 			while (pq.size() != 1) {
-				int a = pq.poll();
-				int b = pq.poll();
-				int sum = a + b;
+				long a = pq.poll();
+				long b = pq.poll();
+				long sum = a + b;
 				result += sum;
 				pq.offer(sum);
 			}
