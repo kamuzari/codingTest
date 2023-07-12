@@ -2,7 +2,7 @@ package BaekJoon._자료구조구현;
 
 import java.util.Scanner;
 
-public class Main {
+public class StackImpl {
 
 	public static final int NOT_PRINT = 10_000;
 
