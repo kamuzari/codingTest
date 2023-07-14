@@ -6,37 +6,67 @@ public class QuickSortImpl implements CustomSortable {
 		quicksortByLeftPivot(arr, 0, arr.length - 1);
 	}
 
-
 	public void quicksortByLeftPivot(int[] arr, int start, int end) {
-		if (start >= end) {
+		// 2개 미만인 경우는 정렬 할 필요 없음.
+		if (start >= end)
 			return;
-		}
 
-		int pivot = start;
-		int low = start + 1;
-		int high = end;
+		int pivot = getPivotByLeft(arr, start, end);
 
-		// 피벗을 제외한 처음과 끝에서 포인터 두개를 가지고 이동
-		// 왼쪽 시작 포인터는 피벗보다 큰 것을 선택
-		// 오른쪽 시작 포인터는 피벗보다 작은 것을 선택
-		while (low <= high) {
-			while (low <= end && arr[low] <= arr[pivot]) {
-				low++;
+		getPivotByLeft(arr, start, pivot - 1);
+		getPivotByLeft(arr, pivot + 1, end);
+	}
+
+	private int getPivotByLeft(int[] arr, int start, int end) {
+		int pivotIndex = start;
+		int lowwerInedx = start + 1;
+		int higherIndex = end;
+
+		while (lowwerInedx <= higherIndex) {
+			while (lowwerInedx <= end && arr[lowwerInedx] < arr[pivotIndex]) {
+				// 피벗보다 큰값찾기
+				lowwerInedx++;
 			}
 
-			while (high > start && arr[high] >= arr[pivot]) {
-				high--;
+			while (higherIndex > start && arr[higherIndex] > arr[pivotIndex]) {
+				// 피벗보다 작은값찾기
+				higherIndex--;
 			}
 
-			if (low > high) {
-				swap(arr, pivot, high);
+			if (lowwerInedx > higherIndex) {
+				swap(arr, pivotIndex, higherIndex);
 			} else {
-				swap(arr, low, high);
+				swap(arr, lowwerInedx, higherIndex);
+			}
+
+		}
+
+		return higherIndex;
+	}
+
+	private int getPivotByRight(int[] arr, int start, int end) {
+		int pivot = end;
+		int lowerIndex = start;
+		int higherIndex = end - 1;
+
+		while (lowerIndex <= higherIndex) {
+
+			while (lowerIndex < end && arr[lowerIndex] <= arr[pivot]) {
+				lowerIndex++;
+			}
+
+			while (higherIndex >= start && arr[higherIndex] >= arr[pivot]) {
+				higherIndex--;
+			}
+
+			if (lowerIndex > higherIndex) {
+				swap(arr, pivot, lowerIndex);
+			} else {
+				swap(arr, lowerIndex, higherIndex);
 			}
 		}
 
-		quicksortByLeftPivot(arr, start, high - 1);
-		quicksortByLeftPivot(arr, high + 1, end);
+		return lowerIndex;
 	}
 
 	private void swap(int[] arr, int i, int j) {
