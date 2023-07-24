@@ -1,4 +1,4 @@
-package BaekJoon._자료구조구현;
+package BaekJoon._자료구조구현.try1.heap;
 
 import java.util.Arrays;
 import java.util.Random;
