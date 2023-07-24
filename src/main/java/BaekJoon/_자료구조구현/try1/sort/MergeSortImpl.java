@@ -1,4 +1,4 @@
-package BaekJoon._자료구조구현.sort;
+package BaekJoon._자료구조구현.try1.sort;
 
 public class MergeSortImpl implements CustomSortable {
 	private final int CAPACITY = 1_000_000_000;

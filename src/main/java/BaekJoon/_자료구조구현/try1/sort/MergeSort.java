@@ -1,7 +1,6 @@
-package BaekJoon._자료구조구현.sort;
+package BaekJoon._자료구조구현.try1.sort;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class MergeSort {
 
