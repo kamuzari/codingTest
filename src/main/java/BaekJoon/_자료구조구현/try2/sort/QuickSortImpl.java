@@ -13,13 +13,14 @@ public class QuickSortImpl {
 
 	public void quickSort(int start, int end, int[] arr) {
 
-		if(start<end){
+		if (start < end) {
 			// int pivot = getPivotByLeft(start, end, arr);
 			int pivot = getPivotByRight(start, end, arr);
 			quickSort(start, pivot - 1, arr);
 			quickSort(pivot + 1, end, arr);
 		}
 	}
+
 
 	private int getPivotByLeft(int start, int end, int[] arr) {
 		int pivotIndex = start;
@@ -44,10 +45,11 @@ public class QuickSortImpl {
 
 		return right;
 	}
-	private int getPivotByRight(int start,int end,int[] arr){
+
+	private int getPivotByRight(int start, int end, int[] arr) {
 		int pivotIndex = end;
-		int left = start ;
-		int right = end-1;
+		int left = start;
+		int right = end - 1;
 
 		while (left <= right) {
 			while (left < end && arr[left] < arr[pivotIndex]) {
