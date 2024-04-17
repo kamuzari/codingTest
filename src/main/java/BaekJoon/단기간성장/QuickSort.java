@@ -53,7 +53,7 @@ public class QuickSort {
 		}
 
 		quickSortByRightPivot(s, l - 1, arr);
-		quickSortByRightPivot(l, e, arr);
+		quickSortByRightPivot(l + 1, e, arr);
 	}
 
 	public static void quickSortByFirstPivot(int s, int e, int[] arr) {
@@ -81,7 +81,7 @@ public class QuickSort {
 		}
 
 		quickSortByFirstPivot(s, r - 1, arr);
-		quickSortByFirstPivot(r, e, arr);
+		quickSortByFirstPivot(r + 1, e, arr);
 	}
 
 	public static void quickSortByMiddlePivot(int s, int e, int[] arr) {
