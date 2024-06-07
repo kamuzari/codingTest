@@ -62,6 +62,7 @@ public class MazeRunner {
 		return ny < 0 || nx < 0 || ny >= n || nx >= n;
 	}
 
+	// 출구 기준으로 사각형을 늘려가면 안되낟.
 	static int exitDirs[][] = {
 		{-1, -1},
 		{-1, 1},
@@ -77,7 +78,11 @@ public class MazeRunner {
 	public static void main(String[] args) {
 		requestInput();
 		int totalMovingCount = 0;
+		int tc = 1;
 		while (k-- > 0) {
+
+			System.out.println("@@@@@@@@" + tc + "@@@@@@@@\n");
+			tc++;
 			List<Integer> removals = new ArrayList<>();
 			for (int humanId : humans.keySet()) {
 				Node humanPos = humans.get(humanId);
@@ -101,13 +106,26 @@ public class MazeRunner {
 			if (humans.keySet().isEmpty()) {
 				break;
 			}
+
+			System.out.println("=========== 이동 =============");
+			printMap();
 			int[] yxsize = findSquare();
+			System.out.println("회전 좌표 : " + Arrays.toString(yxsize));
 			rotate(yxsize[0], yxsize[1], yxsize[2]);
+			System.out.println("=========== 회전 =============");
+			printMap();
+			System.out.println();
 		}
 
 		// 이동거리합과 출구좌표 구하기
 		System.out.println(totalMovingCount);
 		System.out.println((exit.y + 1) + " " + (exit.x + 1));
+	}
+
+	private static void printMap() {
+		for (int i = 0; i < n; i++) {
+			System.out.println(Arrays.toString(map[i]));
+		}
 	}
 
 	static int[] findSquare() throws RuntimeException {
