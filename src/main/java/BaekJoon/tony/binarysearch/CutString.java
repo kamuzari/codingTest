@@ -1,44 +1,63 @@
 package BaekJoon.tony.binarysearch;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class CutString {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
+	static int n, m;
+	private static char[][] table;
 
-        String[] arr = new String[M];
-        for (int i = 0; i < N; i++) {
-            String s = br.readLine();
-            for (int j = 0; j < M; j++) {
-                if (i == 0) arr[j] = String.valueOf(s.charAt(j));
-                else arr[j] += String.valueOf(s.charAt(j));
-            }
-        }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		StringTokenizer st = new StringTokenizer(sc.nextLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
 
-        if (N == 2) {
-            System.out.println(0);
-            return;
-        }
+		table = new char[n][m];
+		for (int i = 0; i < n; i++) {
+			table[i] = sc.nextLine().toCharArray();
+		}
 
-        for (int i = 1; i < N - 1; i++) {
-            Set<String> set = new HashSet<>();
+		int s = 0;
+		int e = n - 1;
+		int answer = 0;
 
-            for (int j = 0; j < M; j++) {
-                String key = arr[j].substring(i);
-                if (set.contains(key)) {
-                    System.out.println(i - 1);
-                    return;
-                } else set.add(key);
-            }
+		while (s <= e) {
+			int mid = (s + e) >> 1;
 
-        }
-        System.out.println(N - 1);
-    }
+			if (isPossible(mid)) {
+				answer = mid;
+				s = mid + 1;
+			} else {
+				e = mid - 1;
+			}
+		}
+
+		System.out.println(answer);
+	}
+
+	private static boolean isPossible(int startRow) {
+		HashSet<String> set = new HashSet<>();
+		for (int col = 0; col < m; col++) {
+			StringBuilder result = read(startRow, col);
+
+			if (set.contains(result.toString())) {
+				return false;
+			}
+
+			set.add(result.toString());
+		}
+
+		return true;
+	}
+
+	private static StringBuilder read(int startRow, int fixedCol) {
+		StringBuilder result = new StringBuilder();
+
+		for (int row = startRow; row < n; row++) {
+			result.append(table[row][fixedCol]);
+		}
+		return result;
+	}
 }
