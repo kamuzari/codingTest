@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MakingN {
@@ -27,13 +29,12 @@ public class MakingN {
 		for (char c : number.toCharArray()) {
 			digits[idx++] = toInt(c);
 		}
-
+		
 		for (int i = 0; i < n; i++) {
 			Deque<Integer> container = new LinkedList<>();
 			v[i] = true;
 			container.offer(digits[i]);
-			System.out.println("------------> " + digits[i]);
-			create(0, container);
+			create(1, container, String.valueOf(digits[i]));
 			v[i] = false;
 		}
 
@@ -42,17 +43,22 @@ public class MakingN {
 
 	/**
 	 * todo: 중복을 제거해야 한다.
-	 * @param cnt
+	 * @param pickCount
 	 * @param candidates
 	 */
-	private static void create(int cnt, Deque<Integer> candidates) {
-		System.out.println(candidates);
-		if (cnt == n - 1) {
-			String result = candidates.stream()
-				.map(String::valueOf).collect(Collectors.joining());
+	static Set<String> his = new HashSet<>();
+
+	private static void create(int pickCount, Deque<Integer> candidates, String path) {
+		if (pickCount != n && his.contains(path)) {
+			return;
+		}
+
+		his.add(path);
+
+		if (pickCount == n) {
+			String result = candidates.stream().map(String::valueOf).collect(Collectors.joining());
 
 			if (number.equals(result)) {
-				System.out.println("------------- 정답 ----------- :" + candidates.toString());
 				answer++;
 			}
 			return;
@@ -64,13 +70,13 @@ public class MakingN {
 
 			v[i] = true;
 			candidates.addFirst(digits[i]);
-			create(cnt + 1, candidates);
+			create(pickCount + 1, candidates, path + "F" + digits[i]);
 			candidates.pollFirst();
 			v[i] = false;
 
 			v[i] = true;
 			candidates.addLast(digits[i]);
-			create(cnt + 1, candidates);
+			create(pickCount + 1, candidates, path + "B" + digits[i]);
 			candidates.pollLast();
 			v[i] = false;
 		}
