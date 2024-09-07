@@ -25,18 +25,14 @@ public class MakingN {
 		histories = new HashSet<>();
 		for (int i = 0; i < n; i++) {
 			v[i] = true;
-			System.out.println("subject: " + digits[i] + "  order: " + i);
 			create(1, "" + digits[i], "" + digits[i]);
-			System.out.println("============= END ===========");
 			v[i] = false;
 		}
 
-		System.out.println(histories);
+		System.out.println(histories.size());
 	}
 
 	private static void create(int cnt, String s, String order) {
-		System.out.println(s);
-		System.out.println("     " + order);
 		boolean isEndPoint = cnt == n;
 
 		if (isEndPoint) {
@@ -51,11 +47,13 @@ public class MakingN {
 				continue;
 
 			v[i] = true;
-			create(cnt + 1, digits[i] + s, order + "F" + digits[i]);
+			String next = digits[i] + s;
+			create(cnt + 1, next, order + " " + next);
 			v[i] = false;
 
 			v[i] = true;
-			create(cnt + 1, s + digits[i], order + "B" + digits[i]);
+			next = s + digits[i];
+			create(cnt + 1, next, order + " " + next);
 			v[i] = false;
 		}
 
