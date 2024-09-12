@@ -27,11 +27,11 @@ public class PowerPlantInstallation {
 	}
 
 	static class Node implements Comparable<Node> {
-		private int next;
+		private int vertex;
 		private double cost;
 
-		public Node(int next, double cost) {
-			this.next = next;
+		public Node(int vertex, double cost) {
+			this.vertex = vertex;
 			this.cost = cost;
 		}
 
@@ -75,60 +75,68 @@ public class PowerPlantInstallation {
 		}
 
 		for (int i = 1; i < plantCount + 1; i++) {
-			Plant plant = plants[i];
+			Plant current = plants[i];
 			for (int j = i + 1; j < plantCount + 1; j++) {
 				Plant next = plants[j];
-				int a = plant.idx;
+				int a = current.idx;
 				int b = next.idx;
 				if (isConnected[a][b] && isConnected[b][a]) {
 					continue;
 				}
 
-				double cost = getDistance(plant, next);
+				double cost = calculate(current, next);
 				edges[a].add(new Node(b, cost));
 				edges[b].add(new Node(a, cost));
 			}
 		}
 
-		double dist[] = new double[plantCount + 1];
-		Arrays.fill(dist, Double.MAX_VALUE);
-		dist[1] = 0;
+		double distances[] = new double[plantCount + 1];
+		Arrays.fill(distances, Integer.MAX_VALUE);
+		distances[1] = 0;
 		PriorityQueue<Node> pq = new PriorityQueue<>();
 		pq.offer(new Node(1, 0.0));
 
 		while (!pq.isEmpty()) {
 			Node cur = pq.poll();
 
-			if (dist[cur.next] < cur.cost) {
+			if (distances[cur.vertex] < cur.cost) {
 				continue;
 			}
 
-			for (Node next : edges[cur.next]) {
-				if (isConnected[next.next][cur.next]) {
-					dist[next.next] = cur.cost;
-					pq.offer(new Node(next.next, cur.cost));
+			for (Node next : edges[cur.vertex]) {
+				boolean isAlreadyConnected = isConnected[next.vertex][cur.vertex];
+				if (isAlreadyConnected) {
+					double newCost = cur.cost;
+					if (distances[next.vertex] <= newCost) {
+						continue;
+					}
+
+					distances[next.vertex] = newCost;
+					pq.offer(new Node(next.vertex, cur.cost));
 					continue;
 				}
 
-				double newCost = dist[cur.next] + next.cost;
-
-				if (newCost > limitedLength)
+				boolean notValid = limitedLength < next.cost;
+				if (notValid) {
 					continue;
-				if (dist[next.next] < newCost)
+				}
+
+				double newCost = distances[cur.vertex] + next.cost;
+				boolean isNotShortest = distances[next.vertex] <= newCost;
+				if (isNotShortest)
 					continue;
 
-				dist[next.next] = newCost;
-				pq.offer(new Node(next.next, newCost));
+				distances[next.vertex] = newCost;
+				pq.offer(new Node(next.vertex, newCost));
 			}
 		}
 
-		System.out.println(dist[plantCount]);
+		int answer = (int)(distances[plantCount] * 1000);
+		System.out.println(answer);
 	}
 
-	static double getDistance(Plant a, Plant b) {
-		return Math.sqrt(
-			Math.pow(Math.abs(a.y - b.y), 2) + Math.pow(Math.abs(a.x - b.x), 2)
-		);
+	static double calculate(Plant a, Plant b) {
+		return Math.sqrt(Math.pow(Math.abs(a.y - b.y), 2) + Math.pow(Math.abs(a.x - b.x), 2));
 	}
 
 }
