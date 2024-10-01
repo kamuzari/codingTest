@@ -1,7 +1,3 @@
-/src/main/java/SensitiveCT/**
-/src/main/java/codingExam/
-/src/main/java/OutOfCodingTest/Lamda/DesignPattern/
-/src/main/java/OutOfCodingTest/Lamda/
-/src/main/java/OutOfCodingTest/Lamda/Thread/
-/src/main/java/OutOfCodingTest/test/
-
+/src/main/java/secret/**
+node_modules/
+.idea/
