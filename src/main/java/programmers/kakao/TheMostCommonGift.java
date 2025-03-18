@@ -5,28 +5,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TheMostCommonGift {
-    public int solution(String[] friends, String[] gifts) {
-        int answer = 0;
-        Map<String, Integer> nameMappings = new HashMap<>();
-        for (int i = 0; i < friends.length; i++) {
-            nameMappings.put(friends[i], i);
-        }
+	public int solution(String[] friends, String[] gifts) {
+		Map<String, Integer> giftPoints = new HashMap<>();
+		Map<String, Map<String, Integer>> givers = new HashMap<>();
+		Map<String, Integer> givenCounts = new HashMap<>();
 
-        int n = friends.length;
-        int[][] tables = new int[n][n];
+		for (String giver : friends) {
+			giftPoints.put(giver, 0);
+			givers.put(giver, new HashMap<>());
+			givenCounts.put(giver, 0);
 
-        for (String to : gifts) {
-            String[] aToB = to.split(" ");
-            int from = nameMappings.get(aToB[0]);
-            int toto= nameMappings.get(aToB[1]);
+			Arrays.stream(friends)
+				.filter(receiver -> !receiver.equals(giver))
+				.forEach(receiver -> givers.get(giver).put(receiver, 0));
+		}
 
-            tables[from][toto]++;
-        }
+		for (String gift : gifts) {
+			String[] s = gift.split(" ");
+			String giver = s[0];
+			String receiver = s[1];
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(Arrays.toString(tables[i]));
-        }
+			givers.get(giver).put(receiver, givers.get(giver).get(receiver) + 1);
+			giftPoints.put(giver, giftPoints.getOrDefault(giver, 0) + 1);
+			giftPoints.put(receiver, giftPoints.getOrDefault(receiver, 0) - 1);
+		}
 
-        return answer;
-    }
+		for (String giver : friends) {
+			for (String receiver : friends) {
+				if (giver.equals(receiver))
+					continue;
+				int giverCount = givers.get(giver).get(receiver);
+				int receiverCount = givers.get(receiver).get(giver);
+				if (giverCount > receiverCount) {
+					givenCounts.put(giver, givenCounts.get(giver) + 1);
+				} else if (giverCount == receiverCount) {
+					if (giftPoints.get(giver) <= giftPoints.get(receiver))
+						continue;
+					givenCounts.put(giver, givenCounts.get(giver) + 1);
+				}
+			}
+		}
+
+		return givenCounts.values().stream().mapToInt(v -> v).max().orElseGet(() -> 0);
+	}
 }
